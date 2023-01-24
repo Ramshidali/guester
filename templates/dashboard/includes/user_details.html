@@ -1,0 +1,70 @@
+{% load static %}
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+       <div class="modal-content">
+          <div class="modal-header">
+             <h5 class="modal-title">Shop Credintials</h5>
+             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+             </button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+                <div class="card">
+                    <div class="card-body d-flex">
+                        <div class="col-6" > 
+                            <h6 class="text-dark ">Username: </h6>
+                            <p class="item-text">{{shop_admin.user}}</p>
+
+                            <h6 class="text-dark ">Password: </h6>
+                            <p class="item-text">{{shop_admin.password}}</p>
+
+                            <a class="btn btn-outline-success btn-icon-text"   href="{% url 'shops:set_permissions' pk=shop_admin.pk %}" >Permission <i class="las la-user-shield"></i></a>
+                        </div>
+                    </div> 
+                </div>
+                
+
+            </div> <!-- end row -->
+          </div>
+       </div>
+    </div>
+</div> 
+
+
+    {{dish_form.media}}
+    <style>
+        .select2-dropdown{
+            z-index:1061 !important;
+        }
+        .select2-container--default{
+            width: 100%;
+        }
+        .select2-container .select2-selection--single {
+            height: calc(2.5em + .1rem + 1px);
+        }
+        .select2-container--default .select2-selection--single {
+            border: 1px solid #e3ebf6;
+        }
+        .select2-container--default .select2-results__option--highlighted[aria-selected] {
+            color: #4d65d9;
+        }
+
+        .dynamic-formset-add td{
+            text-align: center !important;
+        }
+        input[type=number]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: 26px;
+            position: absolute;
+            top: 8px;
+            right: 14px;
+            width: 20px; 
+        }.select2-container--default .select2-selection--single {
+            border-radius: 1.25rem;
+            line-height:1.75;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+        }
+    </style>

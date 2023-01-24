@@ -1,0 +1,263 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block content %}
+    <!-- Page Content-->
+    <div class="page-content">
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="row">
+                            <div class="col">
+                                <h2 class="page-title">{{page_title}} </h2>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url 'app' %}">Dashboard</a></li>
+                                    <li class="breadcrumb-item"><a href="{% url 'staffs:staffs' %}">{{app_name}}</a></li>
+                                    <li class="breadcrumb-item active">{{page_title}} : <span class="text-dark font-weight-bold"> {{instance.name}}</span></li>
+                                </ol>
+                            </div><!--end col-->
+                            <div class="col-auto align-self-center">
+                                <a class="btn btn-outline-success btn-icon-text"   href="{% url 'staffs:staff_create' %}" > New <i class="las la-plus"></i></a>
+                                <a class="btn btn-outline-success btn-icon-text"   href="{% url 'staffs:staff_edit' pk=instance.pk %}" >Edit <i class="las la-pen btn-icon-append"></i></a>
+                                <a class="action-button remove redirect btn btn-outline-danger btn-icon-text"
+                                data-id="{{instance.pk}}" data-text="{{confirm_delete_message}}" data-title="Are you sure?" href="{% url 'staffs:staff_delete' pk=instance.pk %}">Delete <i class="las la-trash btn-icon-append"></i></a>
+                            </div><!--end col-->  
+                        </div><!--end row-->                                                              
+                    </div><!--end page-title-box-->
+                </div><!--end col-->
+            </div><!--end row-->
+            <div class="row mt-3">
+                <div class="col-lg-12">
+                      <div class="card mb-0 iq-content rounded-bottom">
+                         <div class="d-flex flex-wrap align-items-center justify-content-between mx-3 my-3">
+                            <div class="d-flex flex-wrap align-items-center">
+                               <div class="profile-img22 position-relative me-3 mb-3 mb-lg-0">
+                                {% if instance.profile %}
+                                    <img src="{{instance.profile.url}}" class="img-fluid avatar avatar-100 avatar-rounded" alt="profile-image">
+                                {% else %}
+                                    <img src="{% static 'dashboard/images/User-profile/avatar.png' %}" class="img-fluid avatar avatar-100 avatar-rounded" alt="profile-image">
+                                {% endif %}
+                               </div>
+                               <div class="d-flex align-items-center mb-3 mb-sm-0">
+                                    <div>
+                                        <h6 class="me-2 text-primary">{{instance.name}}</h6>
+                                    </div>
+                                    <div class="col-sm-6 ms-5">
+                                        <p class="me-2 mb-0 text-dark"><span class="text-primary">Email : </span>{{instance.email}}</p>
+                                        <p class="mb-0 text-dark"><span class="text-primary">Phone : </span>{{instance.phone}}</p>
+                                    </div> 
+                                    <div class="col-sm-6 ms-5">
+                                        <p class="me-2 mb-0 text-dark"><span class="text-primary">Age : </span>{{instance.age}}</p>
+                                        <p class="mb-0 text-dark"><span class="text-primary">Designation : </span>{{instance.designation}}</p>
+                                    </div>
+                                    <div class="col-sm-6 ms-5">
+                                        <p class="me-2 mb-0 text-dark"><span class="text-primary">Salary : </span>{{instance.salary}}</p>
+                                        <p class="mb-0 text-dark"><span class="text-primary">Address : </span>{{instance.address}}</p>
+                                    </div> 
+                               </div>
+                            </div>
+                         </div>
+                      </div>
+                </div>
+                
+             </div>
+           
+            </div> <!-- end row -->
+            <div class="row">
+                <div class="card-body">
+                    <h5 class="text-primary">Bank Details</h5>
+                    <div class="card-body card card-padding">
+                        <div class="row">
+                                       
+                            <div class="col-sm-3">    
+                                <h6 class="text-dark ">Account Holder Name : </h6>
+                                <p class="item-text">{{instance.account_holder_name}}</p>
+                            </div>
+                            <div class="col-sm-3"> 
+                                <h6 class="text-dark ">Account Number : </h6>
+                                <p class="item-text">{{instance.account_number}}</p>
+                            </div>
+                            <div class="col-sm-3">    
+                                <h6 class="text-dark ">Bank Name: </h6>
+                                <p class="item-text">{{instance.bank_name}}</p>
+                            </div>                                
+                            <div class="col-sm-3">    
+                                <h6 class="text-dark ">Bank Branch : </h6>
+                                <p class="item-text">{{instance.bank_branch}}</p>
+                            </div>
+                            <div class="col-sm-3">    
+                                <h6 class="text-dark ">Bank IFSC : </h6>
+                                <p class="item-text">{{instance.bank_ifsc}}</p>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div> 
+            </div>
+
+            <div class="row">
+                <div class="card-body">
+                    <h5 class="text-primary mb-2"> Created & updated</h5>
+                    <div class="card-body card card-padding">
+                        <div class="row">
+                            <div class="col-sm-3">    
+                                <h6 class="text-dark ">Date Added : </h6>
+                                <p class="item-text">{{instance.date_added}}</p>
+                            </div>
+                            <div class="col-sm-3"> 
+                                <h6 class="text-dark ">Date Updated : </h6>
+                                <p class="item-text">{{instance.date_updated}}</p>
+                            </div>
+                            <div class="col-sm-3"> 
+                                <h6 class="text-dark ">Created User : </h6>
+                                <p class="item-text">{{instance.creator.username}}</p>
+                            </div>
+                            <div class="col-sm-3"> 
+                                <h6 class="text-dark ">Last Updated User : </h6>
+                                <p class="item-text">{{instance.updater.username}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+
+            <div class="row">
+                <div class="card-body">
+                    <h5 class="text-primary mb-2" >User Details</h5>
+                    <div class="card-body card card-padding">
+                        <div class="row">
+                                       
+                            <div class="col-sm-3">    
+                                <h6 class="text-dark ">User Name : </h6>
+                                <p class="item-text">{{instance.user}}</p>
+                            </div>
+                            {% if user.is_superuser %}
+                            <div class="col-sm-3">    
+                                <h6 class="text-dark ">Password : </h6>
+                                <p class="item-text">{{instance.password}}</p>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div> 
+            </div>
+
+            <div class="row">
+                <div class="card-body">
+                    <h5 class="text-primary mb-2" >Permissions</h5>
+                    <a class="btn btn-outline-warning btn-sm btn-icon-text mb-2"   href="{% url 'staffs:update_permissions' pk=instance.pk %}" > Update Permissions <i class="ti-plus btn-icon-append"></i></a>             
+                    <div class="card-body card card-padding">
+                        <div class="row">
+                            <h6 class="text-dark">General Permissions :</h6><br />
+                            {% for item in general_permissions %}
+                            <div class="col-sm-3">    
+                                <p>{{forloop.counter}}.   <span class="text-dark">{{item.name}}</span> </p>
+                                
+                                <br>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div> 
+            </div>
+            <div class="row">
+                <div class="card-body">
+                    <div class="card-body card card-padding">
+                        <div class="row">
+                            <h6 class="text-dark">Brand Permissions :</h6><br />
+                            {% for item in brand_permissions %}
+                            <div class="col-sm-3">    
+                                <p>{{forloop.counter}}.   <span class="text-dark">{{item.name}}</span> </p>
+                                
+                                <br>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div> 
+            </div>
+
+            <div class="row">
+                <div class="card-body">
+                    <div class="card-body card card-padding">
+                        <div class="row">
+                            <h6 class="text-dark">Dish Permissions :</h6><br />
+                            {% for item in dish_permissions %}
+                            <div class="col-sm-3">    
+                                <p>{{forloop.counter}}.   <span class="text-dark">{{item.name}}</span> </p>
+                                
+                                <br>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div> 
+            </div>
+
+            <div class="row">
+                <div class="card-body">
+                    <div class="card-body card card-padding">
+                        <div class="row">
+                            <h6 class="text-dark">Shop Permissions :</h6><br />
+                            {% for item in shop_permissions %}
+                            <div class="col-sm-3">    
+                                <p>{{forloop.counter}}.   <span class="text-dark">{{item.name}}</span> </p>
+                                
+                                <br>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div> 
+            </div>
+
+            <div class="row">
+                <div class="card-body">
+                    <div class="card-body card card-padding">
+                        <div class="row">
+                            <h6 class="text-dark">Staff Permissions :</h6><br />
+                            {% for item in staff_permissions %}
+                            <div class="col-sm-3">    
+                                <p>{{forloop.counter}}.   <span class="text-dark">{{item.name}}</span> </p>
+                                
+                                <br>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div> 
+            </div>
+
+            <div class="row">
+                <div class="card-body">
+                    <div class="card-body card card-padding">
+                        <div class="row">
+                            <h6 class="text-dark">User Permissions :</h6><br />
+                            {% for item in user_permissions %}
+                            <div class="col-sm-3">    
+                                <p>{{forloop.counter}}.   <span class="text-dark">{{item.name}}</span> </p>
+                                
+                                <br>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div> 
+            </div>
+                
+
+        </div> <!-- end row -->
+
+
+    </div><!-- container -->
+    <!-- end page content -->
+{% endblock content %}
+{% block static %}
+<style>
+    
+    
+</style>
+{% endblock %}
+        

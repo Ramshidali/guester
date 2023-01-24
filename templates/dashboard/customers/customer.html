@@ -1,0 +1,478 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block content %}
+    <!-- Page Content-->
+    <div class="page-content">
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row mb-3">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="row">
+                            <div class="col">
+                                <h2 class="page-title">{{page_title}} </h2>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url 'app' %}">Dashboard</a></li>
+                                    <li class="breadcrumb-item"><a href="{% url 'customers:customers' %}">{{app_name}}</a></li>
+                                    <li class="breadcrumb-item active">{{page_title}} : <span class="text-dark font-weight-bold"> {{instance.name}}</span></li>
+                                </ol>
+                            </div><!--end col-->
+                            <div class="col-auto align-self-center">
+                            </div><!--end col-->  
+                        </div><!--end row-->                                                              
+                    </div><!--end page-title-box-->
+                </div><!--end col-->
+            </div><!--end row-->
+           
+            <div class="row">
+                <div class="container d-flex justify-content-between">
+                    <div class="col-8 p-5">
+                        <div class="customer-box">
+                            <div class="main-box">
+                                <div class="top-box" style="background:url({% static 'dashboard/images/customer_2.jpg' %}); background-size:cover;">
+                                    <div class="overlay"></div>
+                                </div>
+                                <div class="bottom-box d-flex justify-content-between">
+                                    <div class="left d-flex">
+                                        <div class="profile-img22 position-relative me-3 mb-3 mb-lg-0">
+                                            {% if instance.photo %}
+                                                <img src="{{instance.photo.url}}" class="avatar-rounded" width="200" height="200" alt="profile-image">
+                                            {% else %}
+                                                <img src="{% static 'dashboard/images/User-profile/avatar.png' %}" class="avatar-rounded" width="200" height="200"  alt="profile-image">
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="personal-info">
+                                        <div class="left">
+                                            <h4 class="me-2 mb-1 text-black">{{instance.name}}</h4>
+                                            {% if instance.email %}
+                                                <h5 class="me-2 mb-1 text-secondary">{{instance.email}}</h5>
+                                            {% endif %}
+                                            <h6 class="me-2 text-secondary">{{instance.phone}}</h6>
+                                            <span class="d-flex">
+                                                <!-- <svg width="19" height="19" class="me-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M21 10.8421C21 16.9172 12 23 12 23C12 23 3 16.9172 3 10.8421C3 4.76697 7.02944 1 12 1C16.9706 1 21 4.76697 21 10.8421Z" stroke="#07143B" stroke-width="1.5"/>
+                                                <circle cx="12" cy="9" r="3" stroke="#07143B" stroke-width="1.5"/>
+                                                </svg> -->
+                                                <h6 class="mb-0 text-secondary">{{instance.location}}</h6></span>
+                                        </div>
+                                        <div class="right">
+                                            <a class="btn btn-danger btn-sm btn-icon-text mb-2"   href="{% url 'staffs:update_permissions' pk=instance.pk %}" > Revoke Access <i class="las la-user-shield"></i></a>             
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="data-box">
+                                    <ul class="nav nav-tabs" id="myTab-two" role="tablist">
+                                        <li class="nav-item">
+                                           <a class="nav-link active text-blue" id="home-tab-two" data-bs-toggle="tab" href="#home-two" role="tab" aria-controls="home" aria-selected="true">Favorite Dishes</a>
+                                        </li>
+                                        <li class="nav-item">
+                                           <a class="nav-link text-blue" id="profile-tab-two" data-bs-toggle="tab" href="#profile-two" role="tab" aria-controls="profile" aria-selected="false">Favorite Spots</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link text-blue" id="profile-tab-three" data-bs-toggle="tab" href="#profile-three" role="tab" aria-controls="profile-three" aria-selected="false">Rating & Reviews</a>
+                                        </li>                                         
+                                        <li class="nav-item">
+                                            <a class="nav-link text-blue" id="profile-tab-four" data-bs-toggle="tab" href="#profile-four" role="tab" aria-controls="profile-four" aria-selected="false">Recipies</a>
+                                         </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link text-blue" id="profile-tab-five" data-bs-toggle="tab" href="#profile-five" role="tab" aria-controls="profile-five" aria-selected="false">Recent Stories</a>
+                                        </li>
+                                        
+                                     </ul>
+                                     <div class="tab-content" id="myTabContent-1">
+                                        <div class="tab-pane fade show active" id="home-two" role="tabpanel" aria-labelledby="home-tab-two">
+                                            {% if fav_dishes %}
+                                            <div class="col-lg-12 box">
+                                                <div class="d-flex align-items-center flex-wrap">
+                                                    {% for instance in fav_dishes %}
+                                                    <a href="{% url 'shops:shop' pk=instance.shop_dish.shop.pk %}" class="dish-box">
+                                                        <div class="top">
+                                                            <img src="{{instance.shop_dish.dish.image.url}}" alt="">
+                                                        </div>
+                                                        <div class="bottom">
+                                                            <div class="item">
+                                                                <div class="img">
+                                                                    {% if instance.shop_dish.dish.dietary_type == 'Veg' %}
+                                                                        <img src="{% static 'dashboard/images/veg.svg' %}" alt="">
+                                                                    {% else %}
+                                                                        <img src="{% static 'dashboard/images/non-veg.svg' %}" alt="">
+                                                                    {% endif %}
+                                                                </div>
+                                                                <h4>{{instance.shop_dish}}</h4>
+                                                                <h5>{{instance.shop_dish.price}}</h5>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                            {% else%}
+                                            <div class="col-lg-12">
+                                                <div class="card">
+                                                    <div class="card-body">  
+                                                        <div class="text-center">
+                                                            <img class="mb-3 rounded-circle" width="500px;" src="{% static 'dashboard/images/nothing_found.jpg' %}" alt="" /> 
+                                                            <br />                                     
+                                                        </div>
+                                                    </div><!--end card-body-->
+                                                </div><!--end card-->
+                                            </div><!--end col-->  
+                                            {% endif %}
+                                        </div>
+                                        <div class="tab-pane fade" id="profile-two" role="tabpanel" aria-labelledby="profile-tab-two">
+                                            <div class="tab-pane fade show active" id="home-two" role="tabpanel" aria-labelledby="home-tab-two">
+                                            {% if fav_spots %}
+                                                <div class="col-lg-12 box">
+                                                    <div class="fav-spots">
+                                                        {% for instance in fav_spots %}
+                                                        <a href="{% url 'shops:shop' pk=instance.shop.pk %}" class="spot-box">
+                                                            <div class="image-box">
+                                                                <img src="{{instance.shop.image.url}}" alt="">
+                                                            </div>
+                                                            <div class="data-box">
+                                                                <div class="left-box">
+                                                                    <h3>{{instance.shop}}</h3>
+                                                                    <div class="text-box">
+                                                                        <img src="{% static 'dashboard/images/icons/Location.svg' %}" alt="">
+                                                                        {{instance.shop.location|truncatechars:50}}
+                                                                    </div>
+                                                                    <div class="text-box">
+                                                                        <img src="{% static 'dashboard/images/icons/Rupees.svg' %}" alt="">
+                                                                        {{instance.shop.average_cost_for_two}}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                            {% else%}
+                                                <div class="col-lg-12">
+                                                    <div class="card">
+                                                        <div class="card-body">  
+                                                            <div class="text-center">
+                                                                <img class="mb-3 rounded-circle" width="500px;" src="{% static 'dashboard/images/nothing_found.jpg' %}" alt="" /> 
+                                                                <br />                                     
+                                                            </div>
+                                                        </div><!--end card-body-->
+                                                    </div><!--end card-->
+                                                </div><!--end col--> 
+                                            {% endif %} 
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="profile-three" role="tabpanel" aria-labelledby="profile-tab-three">
+                                            <div class="tab-pane fade show active" id="home-two" role="tabpanel" aria-labelledby="home-tab-two">
+                                                {% if shop_ratings %}
+                                                <div class="col-lg-12 box">
+                                                    <div id="shop-reviews">
+                                                        {% for instance in shop_ratings %}
+                                                        <a href="{% url 'shops:shop' pk=instance.shop.pk %}" class="spot-box">
+                                                            <div class="review-box">
+                                                                <div class="shop-details d-flex align-items-center">
+                                                                    <div class="img">
+                                                                        <img src="{{instance.shop.logo.url}}" alt="">
+                                                                    </div>
+                                                                    <div class="shop-title">
+                                                                        <h5>{{instance.shop}}</h5>
+                                                                        <div class="text-box">
+                                                                            <img src="{% static 'dashboard/images/icons/Location.svg' %}" alt="">
+                                                                            {{instance.shop.location.short_name}}
+                                                                        </div>
+                                                                        <h6>{{instance.rating}}/5.0</h6>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="rating-box">
+                                                                    <div class="item">
+                                                                        <h6>Customer Service</h6>
+                                                                        <div class="bottom d-flex justify-content-between">
+                                                                            <div class="left">
+                                                                                <span class="fa fa-star {% if instance.customer_service >= 1 %} checked {% endif %}"></span>
+                                                                                <span class="fa fa-star {% if instance.customer_service >= 2 %} checked {% endif %}"></span>
+                                                                                <span class="fa fa-star {% if instance.customer_service >= 3 %} checked {% endif %}"></span>
+                                                                                <span class="fa fa-star {% if instance.customer_service >= 4 %} checked {% endif %}"></span>
+                                                                                <span class="fa fa-star {% if instance.customer_service >= 5 %} checked {% endif %}"></span>
+                                                                            </div>
+                                                                            <div class="right">{{instance.customer_service}}.0</div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="item">
+                                                                        <h6>Food Quality</h6>
+                                                                        <div class="bottom d-flex justify-content-between">
+                                                                            <div class="left">
+                                                                                <span class="fa fa-star {% if instance.food_quality >= 1 %} checked {% endif %}"></span>
+                                                                                <span class="fa fa-star {% if instance.food_quality >= 2 %} checked {% endif %}"></span>
+                                                                                <span class="fa fa-star {% if instance.food_quality >= 3 %} checked {% endif %}"></span>
+                                                                                <span class="fa fa-star {% if instance.food_quality >= 4 %} checked {% endif %}"></span>
+                                                                                <span class="fa fa-star {% if instance.food_quality >= 5 %} checked {% endif %}"></span>
+                                                                            </div>
+                                                                            <div class="right">{{instance.food_quality}}.0</div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="item">
+                                                                        <h6>Likely to return</h6>
+                                                                        <div class="bottom d-flex justify-content-between">
+                                                                            <div class="left">
+                                                                                <span class="fa fa-star {% if instance.likely_to_return >= 1 %} checked {% endif %}"></span>
+                                                                                <span class="fa fa-star {% if instance.likely_to_return >= 2 %} checked {% endif %}"></span>
+                                                                                <span class="fa fa-star {% if instance.likely_to_return >= 3 %} checked {% endif %}"></span>
+                                                                                <span class="fa fa-star {% if instance.likely_to_return >= 4 %} checked {% endif %}"></span>
+                                                                                <span class="fa fa-star {% if instance.likely_to_return >= 5 %} checked {% endif %}"></span>
+                                                                            </div>
+                                                                            <div class="right">{{instance.likely_to_return}}.0</div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="item">
+                                                                        <h6>Ambience</h6>
+                                                                        <div class="bottom d-flex justify-content-between">
+                                                                            <div class="left">
+                                                                                <span class="fa fa-star {% if instance.ambience >= 1 %} checked {% endif %}"></span>
+                                                                                <span class="fa fa-star {% if instance.ambience >= 2 %} checked {% endif %}"></span>
+                                                                                <span class="fa fa-star {% if instance.ambience >= 3 %} checked {% endif %}"></span>
+                                                                                <span class="fa fa-star {% if instance.ambience >= 4 %} checked {% endif %}"></span>
+                                                                                <span class="fa fa-star {% if instance.ambience >= 5 %} checked {% endif %}"></span>
+                                                                            </div>
+                                                                            <div class="right">{{instance.ambience}}.0</div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="item">
+                                                                        <h6>Hygiene</h6>
+                                                                        <div class="bottom d-flex justify-content-between">
+                                                                            <div class="left">
+                                                                                <span class="fa fa-star {% if instance.hygiene >= 1 %} checked {% endif %}"></span>
+                                                                                <span class="fa fa-star {% if instance.hygiene >= 2 %} checked {% endif %}"></span>
+                                                                                <span class="fa fa-star {% if instance.hygiene >= 3 %} checked {% endif %}"></span>
+                                                                                <span class="fa fa-star {% if instance.hygiene >= 4 %} checked {% endif %}"></span>
+                                                                                <span class="fa fa-star {% if instance.hygiene >= 5 %} checked {% endif %}"></span>
+                                                                            </div>
+                                                                            <div class="right">{{instance.hygiene}}.0</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="review-card">
+                                                                    <p>{{instance.review|truncatechars:"100"}}</p>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                            {% else%}
+                                                <div class="col-lg-12">
+                                                    <div class="card">
+                                                        <div class="card-body">  
+                                                            <div class="text-center">
+                                                                <img class="mb-3 rounded-circle" width="500px;" src="{% static 'dashboard/images/nothing_found.jpg' %}" alt="" /> 
+                                                                <br />                                     
+                                                            </div>
+                                                        </div><!--end card-body-->
+                                                    </div><!--end card-->
+                                                </div><!--end col--> 
+                                            {% endif %} 
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="profile-four" role="tabpanel" aria-labelledby="profile-tab-four">
+                                            <div class="tab-pane fade show active" id="home-two" role="tabpanel" aria-labelledby="home-tab-two">
+                                                <div class="col-lg-12">
+                                                    <div class="card">
+                                                        <div class="card-body">  
+                                                            <div class="text-center">
+                                                                <img class="mb-3 rounded-circle" width="500px;" src="{% static 'dashboard/images/nothing_found.jpg' %}" alt="" /> 
+                                                                <br />                                     
+                                                            </div>
+                                                        </div><!--end card-body-->
+                                                    </div><!--end card-->
+                                                </div><!--end col-->  
+                                          </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="profile-five" role="tabpanel" aria-labelledby="profile-tab-five">
+                                            <div class="tab-pane fade show active" id="home-two" role="tabpanel" aria-labelledby="home-tab-two">
+                                                <div class="col-lg-12">
+                                                    <div class="card">
+                                                        <div class="card-body">  
+                                                            <div class="text-center">
+                                                                <img class="mb-3 rounded-circle" width="500px;" src="{% static 'dashboard/images/nothing_found.jpg' %}" alt="" /> 
+                                                                <br />                                     
+                                                            </div>
+                                                        </div><!--end card-body-->
+                                                    </div><!--end card-->
+                                                </div><!--end col-->  
+                                          </div>
+                                        </div>
+                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 activity">
+                        <div class="card p-4">
+                            <h4>Activity Description</h4>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+
+    </div><!-- container -->
+    <!-- end page content -->
+{% endblock content %}
+{% block static %}
+<style>
+    .checked {
+        color: coral;
+    }
+    .overlay{
+        background: rgba(0, 0, 0, 0.5);
+        opacity: 0.8;
+    }
+    .profile-img22{
+        left: 50px;
+        bottom: 15px
+    }
+
+    .avatar-rounded{
+        border: 3px  solid #b2b6e9;
+    }
+    .story{
+        background: linear-gradient(207.2deg, #3FBA69 2.48%, #4EFB85 90.62%);
+        padding: 3px;
+        position: relative;
+    }
+    .top-box{
+        background-repeat: no-repeat;
+        padding:100px;
+        display:none;
+    }
+    .bottom-box{
+        background: #fefffe;
+        border-radius: 24px 24px 0 0;
+        padding: 40px 10px; 
+        margin-top:50px;
+    }
+    .personal-info{
+        width: 70%;
+        padding: 10px 30px;
+        display: flex;
+        justify-content: space-between;
+    }
+    .text-blue{
+        color: #383f92;
+        font-weight: 600;
+    }
+    .nav-tabs , .nab-link{
+        border-bottom: 0;
+        margin-bottom: 0;
+        background: #fefffe !important;
+    }
+    .nav-tabs .nav-link.active{
+        border-bottom: 2px solid #383f92;
+        color:#fff;
+        background:#383f92 !important;
+    }
+    .nav-tabs .nav-link.active:hover,.nav-tabs .nav-link:focus{
+        color: #fff;
+    }
+    .tab-content .card{
+        border-radius: 0 !important;
+    }
+    .box{
+        background: #fefffe;
+        padding: 10px 10px 10px;
+    }
+    .dish-box{
+        width: calc((100% - 80px) / 3);
+        margin-top: 20px;
+        margin-right: 20px;
+        position: relative;
+    }
+    .dish-box .top{
+        width: 100%;
+        height: 150px;
+        overflow: hidden;
+        border-radius: 16px;
+        margin-bottom: 10px;
+    }
+    .dish-box .top img{
+        display: block;
+        width: 100%;
+        object-fit: cover;
+    }
+    .dish-box .img{
+        width: 20px;
+        margin-bottom: 5px;
+    }
+    .dish-box .img img{
+        width: 100%;
+    }
+    .dish-box .item {
+        padding:5px;
+    }
+    .dish-box .item h4{
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+    .dish-box .item h5{
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+
+    .fav-spots{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 30px 10px;
+    }
+    .spot-box{
+        cursor: pointer;
+        border: 1px solid rgb(227, 227, 227);
+        border-radius: 16px;
+        display: flex;
+        flex-direction: column;
+        -webkit-box-pack: justify;
+        justify-content: space-between;
+        overflow: hidden;
+        box-shadow: rgb(0 0 0 / 9%) 0px 10.8084px 30.0234px;
+    }
+    .spot-box .image-box{
+        height: 170px;
+    }
+    .spot-box .image-box img{
+        height: 100%;
+        width: 100%;
+        display: block;
+    }
+    .spot-box .data-box{
+        padding: 15px;
+        display: flex;
+        -webkit-box-pack: justify;
+        justify-content: space-between;
+        background: rgb(255, 255, 255);
+    }
+    .spot-box .data-box .left-box h3{
+        font-size: 17px;
+        letter-spacing: 0.1px;
+        color: rgb(34, 34, 34);
+        margin-bottom: 10px;
+    }
+    .spot-box .data-box .left-box .text-box{
+        font-size: 13px;
+        line-height: 20px;
+        letter-spacing: 0.25px;
+        color: rgb(160, 160, 160);
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        margin-bottom: 5px;
+    }
+
+
+    .activity{
+    }
+    .activity h4{
+        color: #383f92;
+        font-weight: 600;
+        font-size: 16px;
+    }
+</style>
+{% endblock %}
+        

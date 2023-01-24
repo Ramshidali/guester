@@ -1,0 +1,132 @@
+{% load static %}
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+       <div class="modal-content">
+          <div class="modal-header">
+             <h5 class="modal-title">Shop Details</h5>
+             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+             </button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+                <div class="py-2">
+                    <h6 class="heading-title text-primary fw-bolder">Contact Details</h6>        
+                    <div class="d-flex mt-2">
+                        <i class="las la-map-marker"></i>
+                        <p class="mb-0 ms-3">{{instance.location}}</p>
+                    </div>
+                    {% if instance.zone %}
+                    <div class="d-flex mt-2">
+                        <i class="las la-map-marked"></i>
+                        <p class="mb-0 ms-3">Zone : {{instance.zone}}</p>
+                    </div>
+                    {% endif %}
+                    {% if instance.sub_zone %}
+                    <div class="d-flex mt-2">
+                        <i class="las la-map-marked-alt"></i>
+                        <p class="mb-0 ms-3">Sub Zone : {{instance.sub_zone}}</p>
+                    </div>
+                    {% endif %}
+                    <div class="d-flex mt-2">
+                        <i class="las la-phone"></i>
+                        <p class="mb-0 ms-3">{{instance.phone}}</p>
+                    </div>
+                    <div class="d-flex mt-2">
+                        <i class="las la-envelope-open-text"></i>
+                        <p class="mb-0 ms-3">{{instance.email}}</p>
+                    </div>
+                    <div class="d-flex mt-2">
+                        <i class="las la-globe"></i>
+                        <p class="mb-0 ms-3">{{instance.website_link}}</p>
+                    </div>
+                </div>
+                <div class="py-3">
+                    <h6 class="heading-title text-primary fw-bolder">Other Details</h6>        
+                    <div class="d-flex mt-2">
+                        <i class="las la-user-tie"></i>
+                        <p class="mb-0 ms-3"><span>Owner Name : </span>{{instance.owner_name}}</p>
+                    </div>
+                    <div class="d-flex mt-2">
+                        <i class="las la-user-cog"></i>
+                        <p class="mb-0 ms-3"><span>Manager Name: </span>{{instance.manager_name}}</p>
+                    </div>
+                    <div class="d-flex mt-2">
+                        <i class="las la-tty"></i>
+                        <p class="mb-0 ms-3"><span>Contact Number : </span>{{instance.contact_number}}</p>
+                    </div>
+                    <div class="d-flex mt-2">
+                        <i class="las la-rupee-sign"></i>
+                        <p class="mb-0 ms-3"><span>Average Cost For Two : </span>{{instance.average_cost_for_two}}</p>
+                    </div>
+                </div>
+                
+
+            </div> <!-- end row -->
+            <div class="card">
+                <div class="card-header border-0 d-flex justify-content-start align-items-center">
+                    <h5 class="mr-2">Working Days</h5>
+                    {% if working_days.count < 7 %}
+                    <a href="{% url 'shops:add_working_days' pk=instance.pk %}" type="button" class="text-primary rounded-pill me-2 mb-2 mb-sm-0"><i class="las la-plus"></i></a>
+                    {% endif %}
+                </div>
+                <div class="card-body pt-0">
+                    <div class="card-body">
+                        <ul>
+                            {% for instance in working_days %}
+                            <li class="d-flex justify-content-between">
+                                <p>{{instance.day}} : {{instance.start_time|time:"h:i A"}} - {{instance.end_time|time:"h:i A"}}</p>
+                                <div class="right">
+                                    <a href="{% url 'shops:edit_working_day' pk=instance.pk %}" type="button" class="text-primary rounded-pill me-2 mb-2 mb-sm-0"><i class="las la-pen"></i></a>
+                                    <a class="action-button remove redirect reload text-danger"
+                                                                data-id="{{instance.pk}}" data-text="{{confirm_delete_message}}" data-title="Are you sure?" href="{% url 'shops:delete_working_day' pk=instance.pk %}"><i class="las la-trash-alt"></i></a>
+                                </div>
+                                
+                            </li> 
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+          </div>
+       </div>
+    </div>
+</div> 
+
+
+    {{dish_form.media}}
+    <style>
+        .select2-dropdown{
+            z-index:1061 !important;
+        }
+        .select2-container--default{
+            width: 100%;
+        }
+        .select2-container .select2-selection--single {
+            height: calc(2.5em + .1rem + 1px);
+        }
+        .select2-container--default .select2-selection--single {
+            border: 1px solid #e3ebf6;
+        }
+        .select2-container--default .select2-results__option--highlighted[aria-selected] {
+            color: #4d65d9;
+        }
+
+        .dynamic-formset-add td{
+            text-align: center !important;
+        }
+        input[type=number]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: 26px;
+            position: absolute;
+            top: 8px;
+            right: 14px;
+            width: 20px; 
+        }.select2-container--default .select2-selection--single {
+            border-radius: 1.25rem;
+            line-height:1.75;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+        }
+    </style>

@@ -1,0 +1,349 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <!-- Page Content-->
+    <div class="page-content">
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="row">
+                            <div class="col">
+                                <h4 class="page-title">{{page_title}}</h4>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url 'app' %}">Dashboard</a></li>
+                                    <li class="breadcrumb-item active">{{page_title}}</li>
+                                </ol>
+                            </div><!--end col-->
+                            <div class="col-auto col-sm-2 float-right ml-auto align-self-center">
+                                <form method="get" action="{% url 'shops:shops' %}">
+                                    <li class="list-inline-item">
+                                        <div class="input-group">
+                
+                                            <input name="q" type="text" placeholder="Search" value="{{ filter_data.q }}"
+                                                class="form-control" />
+                                            <span class="input-group-append">
+                                                <button type="submit" class="btn btn-soft-success btn-sm">
+                                                    <svg width="18" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <circle cx="11.7669" cy="11.7666" r="8.98856" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></circle>
+                                                        <path d="M18.0186 18.4851L21.5426 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                    </svg>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </li>
+                                </form>
+                            </div>
+                            <div class="col-auto align-self-center">
+                                <a class="btn btn-outline-success btn-icon-text"  href="{% url 'shops:upload_shops' %}" > Upload <i class="ti-plus btn-icon-append"></i></a>
+                                <a class="btn btn-outline-success btn-icon-text"  href="{% url 'shops:shop_create' %}" > Create <i class="ti-plus btn-icon-append"></i></a>
+                            </div><!--end col--> 
+                        </div><!--end row-->                                                              
+                    </div><!--end page-title-box-->
+                </div><!--end col-->
+            </div><!--end row-->
+            <!-- end page title end breadcrumb -->
+            <div class="row">
+                <div class="card">
+                    
+                    <div class="card-body">
+                       <ul class="nav nav-tabs" id="myTab-two" role="tablist">
+                          <li class="nav-item">
+                             <a class="nav-link active text-primary" id="home-tab-two" data-bs-toggle="tab" href="#home-two" role="tab" aria-controls="home" aria-selected="true">Verified Shops</a>
+                          </li>
+                          <li class="nav-item">
+                             <a class="nav-link text-warning" id="profile-tab-two" data-bs-toggle="tab" href="#profile-two" role="tab" aria-controls="profile" aria-selected="false">Unverified Shops</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link text-danger" id="profile-tab-three" data-bs-toggle="tab" href="#rejected" role="tab" aria-controls="profile" aria-selected="false">Rejected Shops</a>
+                         </li>
+                          
+                       </ul>
+                       <div class="tab-content" id="myTabContent-1">
+                          <div class="tab-pane fade show active" id="home-two" role="tabpanel" aria-labelledby="home-tab-two">
+                            {% if  instances %}
+                            <div class="row">
+                                <div class="card-body table-responsive">
+                                    <div class="">
+                                        <table id="datatable" class="table table-striped" >
+                                            <thead>
+                                            <tr>
+                                                <th>SL No</th>
+                                                <th>Name</th>
+                                                <th>Phone</th>
+                                                <th>Shop Type</th>
+                                                <th>Badges</th>
+                                                <th>Location</th>
+                                                <th class="action">Action</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% load el_pagination_tags %}
+                                            {% paginate 10 instances %}
+                                            {% for instance in instances %}
+                                            <tr>
+                                                <td>{{forloop.counter}}</td>
+                                                <td> <h6>{{instance.name}}</h6></td>
+                                                <td>{{instance.phone}}</td>
+                                                <td>{{instance.shop_type|default:'-'}}</td>
+                                                <td>{{instance.badge|default:'-'}}</td>
+                                                <td>{{instance.location|truncatechars:"30"}}</td>
+                                                <td>
+                                                    <div class="d-flex align-items-center  justify-content-center">
+                                                        {% if instance.is_updated == True %}
+                                                        <a href="{% url 'shops:shop_edit' pk=instance.pk %}" class="mr-2 btn btn-sm btn-icon btn-success"><i class="las la-pencil-alt"></i></a>
+                                                        {% else %}
+                                                        <a href="{% url 'shops:shop_update' pk=instance.pk %}" class="mr-2 btn btn-sm btn-icon btn-secondary " title="Update"><i class="las la-edit"></i></a>
+                                                        {% endif %}
+                                                        
+                                                        <a href="{% url 'shops:shop' pk=instance.pk %}" class="mr-2 btn btn-sm btn-icon btn-success"><i class="las la-eye"></i></a>
+                                                        <a class="action-button remove redirect  btn btn-sm btn-icon btn-success"
+                                                            data-id="{{instance.pk}}" data-text="{{confirm_delete_message}}" data-title="Are you sure?" href="{% url 'shops:shop_delete' pk=instance.pk %}"><i class="las la-trash-alt"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+
+                                            </tbody>
+                                        </table> 
+                                        
+                                        {% if instances %}
+                                        {% get_pages %}
+                                            <div class="row">
+                                                <div class="col-lg-12 bottom-content" id="content-pagination">
+                                                    <div class="left">
+                                                        <h6>Showing {{title}}
+                                                        <span class="current_page_index">{{ pages.current_start_index }}</span> - <span
+                                                        class="current_end_status">{{ pages.current_end_index }}</span> of <span
+                                                        class="total_count">{{ pages.total_count }}</span>
+                                                        </h6>
+                                                    </div>
+                                                    <div class="right">
+                                                        <div class="col-sm-12 col-xs-12 my-pagination">{% show_pages %}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                        
+                                    </div>
+                                    
+                                </div>
+                                <!-- end col  -->
+                            </div> 
+
+                            {% else %}
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-body">  
+                                            <div class="text-center">
+                                                <img class="mb-3 rounded-circle" width="500px;" src="{% static 'dashboard/images/nothing_found.jpg' %}" alt="" /> 
+                                                <br />                                     
+                                                <a  href="{% url 'shops:shop_create' %}" class="btn btn-outline-success btn-icon-text">Create {{page.title}}</a>
+                                            </div>
+                                        </div><!--end card-body-->
+                                    </div><!--end card-->
+                                </div><!--end col-->  
+                            {% endif %}
+                          </div>
+                          <div class="tab-pane fade" id="profile-two" role="tabpanel" aria-labelledby="profile-tab-two">
+                            {% if  unverified_instances %}
+                            <div class="row">
+                                <div class="card-body table-responsive">
+                                    <div class="">
+                                        <table id="datatable" class="table table-striped" >
+                                            <thead>
+                                            <tr>
+                                                <th>SL No</th>
+                                                <th>Name</th>
+                                                <th>Phone</th>
+                                                <th>Location</th>
+                                                <th>Shop Type</th>
+                                                <th>Badges</th>
+                                                <th>Location</th>
+                                                <th class="action">Action</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% load el_pagination_tags %}
+                                            {% paginate 10 unverified_instances %}
+                                            {% for instance in unverified_instances %}
+                                            <tr>
+                                                <td>{{forloop.counter}}</td>
+                                                <td> <h6>{{instance.name}}</h6></td>
+                                                <td>{{instance.phone}}</td>
+                                                <td>{{instance.location|default:'-'}}</td>
+                                                <td>{{instance.shop_type|default:'-'}}</td>
+                                                <td>{{instance.badge|default:'-'}}</td>
+                                                <td>{{instance.location|truncatechars:20}}</td>
+                                                <td>
+                                                    <div class="d-flex align-items-center  justify-content-center">
+                                                        <a href="{% url 'shops:shop_verify' pk=instance.pk %}" data-id="{{instance.pk}}" data-text="{{confirm_verify_message}}" data-title="Are you sure?" class="action-button remove redirect  btn btn-sm btn-icon btn-success mr-2" title="Verify Shop"><i class="las la-check-circle"></i></a>
+                                                        <a href="{% url 'shops:shop_reject' pk=instance.pk %}"  class=" btn btn-sm btn-icon btn-danger mr-2" title="Reject Shop"><i class="las la-times"></i></a>
+                                                        {% if instance.is_updated == True %}
+                                                        <a href="{% url 'shops:shop_edit' pk=instance.pk %}" class="mr-2 btn btn-sm btn-icon btn-success"><i class="las la-pencil-alt"></i></a>
+                                                        {% else %}
+                                                        <a href="{% url 'shops:shop_update' pk=instance.pk %}" class="mr-2 btn btn-sm btn-icon btn-secondary " title="Update"><i class="las la-edit"></i></a>
+                                                        {% endif %}
+                                                        
+                                                        <a href="{% url 'shops:shop' pk=instance.pk %}" class="mr-2 btn btn-sm btn-icon btn-success"><i class="las la-eye"></i></a>
+                                                        <a class="action-button remove redirect  btn btn-sm btn-icon btn-success"
+                                                            data-id="{{instance.pk}}" data-text="{{confirm_delete_message}}" data-title="Are you sure?" href="{% url 'shops:shop_delete' pk=instance.pk %}"><i class="las la-trash-alt"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                
+                                            </tbody>
+                                        </table> 
+                                        
+                                        {% if unverified_instances %}
+                                        {% get_pages %}
+                                            <div class="row">
+                                                <div class="col-lg-12 bottom-content" id="content-pagination">
+                                                    <div class="left">
+                                                        <h6>Showing {{title}}
+                                                        <span class="current_page_index">{{ pages.current_start_index }}</span> - <span
+                                                        class="current_end_status">{{ pages.current_end_index }}</span> of <span
+                                                        class="total_count">{{ pages.total_count }}</span>
+                                                        </h6>
+                                                    </div>
+                                                    <div class="right">
+                                                        <div class="col-sm-12 col-xs-12 my-pagination">{% show_pages %}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                        
+                                    </div>
+                                    
+                                </div>
+                                 <!-- end col  -->
+                            </div> 
+                
+                            {% else %}
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-body">  
+                                            <div class="text-center">
+                                                <img class="mb-3 rounded-circle" width="500px;" src="{% static 'dashboard/images/nothing_found.jpg' %}" alt="" /> 
+                                                <br />                                     
+                                                <a  href="{% url 'shops:shop_create' %}" class="btn btn-outline-success btn-icon-text">Create {{page.title}}</a>
+                                            </div>
+                                        </div><!--end card-body-->
+                                    </div><!--end card-->
+                                </div><!--end col-->  
+                            {% endif %}
+                          </div>
+
+                          <div class="tab-pane fade" id="rejected" role="tabpanel" aria-labelledby="profile-tab-three">
+                            {% if  rejected_instances %}
+                            <div class="row">
+                                <div class="card-body table-responsive">
+                                    <div class="">
+                                        <table id="datatable" class="table table-striped" >
+                                            <thead>
+                                            <tr>
+                                                <th>SL No</th>
+                                                <th>Name</th>
+                                                <th>Phone</th>
+                                                <th>Location</th>
+                                                <th>Shop Type</th>
+                                                <th>Badges</th>
+                                                <th class="action">Action</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% load el_pagination_tags %}
+                                            {% paginate 10 rejected_instances %}
+                                            {% for instance in rejected_instances %}
+                                            <tr>
+                                                <td>{{forloop.counter}}</td>
+                                                <td> <h6>{{instance.name}}</h6></td>
+                                                <td>{{instance.phone}}</td>
+                                                <td>{{instance.location|default:'-'}}</td>
+                                                <td>{{instance.shop_type|default:'-'}}</td>
+                                                <td>{{instance.badge|default:'-'}}</td>
+                                                <td>
+                                                    <div class="d-flex align-items-center  justify-content-center">
+                                                        <a href="{% url 'shops:shop_verify' pk=instance.pk %}" data-id="{{instance.pk}}" data-text="{{confirm_verify_message}}" data-title="Are you sure?" class="action-button remove redirect  btn btn-sm btn-icon btn-success mr-2" title="Verify Shop"><i class="las la-check-circle"></i></a>
+                                                        {% if instance.is_updated == True %}
+                                                        <a href="{% url 'shops:shop_edit' pk=instance.pk %}" class="mr-2 btn btn-sm btn-icon btn-success"><i class="las la-pencil-alt"></i></a>
+                                                        {% else %}
+                                                        <a href="{% url 'shops:shop_update' pk=instance.pk %}" class="mr-2 btn btn-sm btn-icon btn-secondary " title="Update"><i class="las la-edit"></i></a>
+                                                        {% endif %}
+                                                        
+                                                        <a href="{% url 'shops:shop' pk=instance.pk %}" class="mr-2 btn btn-sm btn-icon btn-success"><i class="las la-eye"></i></a>
+                                                        <a class="action-button remove redirect  btn btn-sm btn-icon btn-success"
+                                                            data-id="{{instance.pk}}" data-text="{{confirm_delete_message}}" data-title="Are you sure?" href="{% url 'shops:shop_delete' pk=instance.pk %}"><i class="las la-trash-alt"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                
+                                            </tbody>
+                                        </table> 
+                                        
+                                        {% if rejected_instances %}
+                                        {% get_pages %}
+                                            <div class="row">
+                                                <div class="col-lg-12 bottom-content" id="content-pagination">
+                                                    <div class="left">
+                                                        <h6>Showing {{title}}
+                                                        <span class="current_page_index">{{ pages.current_start_index }}</span> - <span
+                                                        class="current_end_status">{{ pages.current_end_index }}</span> of <span
+                                                        class="total_count">{{ pages.total_count }}</span>
+                                                        </h6>
+                                                    </div>
+                                                    <div class="right">
+                                                        <div class="col-sm-12 col-xs-12 my-pagination">{% show_pages %}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                        
+                                    </div>
+                                    
+                                </div>
+                                 <!-- end col  -->
+                            </div> 
+                
+                            {% else %}
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-body">  
+                                            <div class="text-center">
+                                                <img class="mb-3 rounded-circle" width="500px;" src="{% static 'dashboard/images/nothing_found.jpg' %}" alt="" /> 
+                                                <br />                                     
+                                                <a  href="{% url 'shops:shop_create' %}" class="btn btn-outline-success btn-icon-text">Create {{page.title}}</a>
+                                            </div>
+                                        </div><!--end card-body-->
+                                    </div><!--end card-->
+                                </div><!--end col-->  
+                            {% endif %}
+                          </div>
+                          
+                       </div>
+                    </div>
+                 </div>
+            </div>
+            
+
+        </div><!-- container -->
+    </div>
+    <!-- end page content -->
+{% endblock content %}
+{% block static %}
+<style>
+    .col-4{
+        width: 31%;
+    }
+    .item{
+        padding: 5px 10px;
+    }
+</style>
+{% endblock %}
+
+        

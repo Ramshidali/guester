@@ -1,0 +1,63 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block content %}
+    <!-- Page Content-->
+    <div class="page-content">
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="row">
+                            <div class="col">
+                                <h4 class="page-title">{{page_title}} </h4>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url 'app' %}">Dashboard</a></li>
+                                    <li class="breadcrumb-item"><a href="{% url 'staffs:staffs' %}">{{app_name}}</a></li>
+                                    <li class="breadcrumb-item active">{{page_title}} : <span class="text-dark font-weight-bold"> {{instance.name}}</span></li>
+                                </ol>
+                            </div><!--end col-->
+                            <div class="col-auto align-self-center">
+                            </div><!--end col-->  
+                        </div><!--end row-->                                                              
+                    </div><!--end page-title-box-->
+                </div><!--end col-->
+            </div><!--end row-->
+            <div class="row">
+                <div class="card">
+                    <div class="card-body d-flex">
+                        <div class="col-6" >  
+                            <h6 class="text-dark ">User : </h6>
+                            <p>  {{instance.user}}</p>
+
+                            <h6 class="text-dark ">Title: </h6>
+                            <p>  {{instance.title}}</p>
+                     
+                            <h6 class="text-dark ">App : </h6>
+                            <p>  {{instance.app}}</p>
+                            
+                            <h6 class="text-dark ">Activity : </h6>
+                            <p>  {{instance.activity_type}}</p>
+
+                            <h6 class="text-dark ">Item : </h6>
+                            <p>  {{instance.instance}}</p>
+
+                            <h6 class="text-dark ">Time : </h6>
+                            <p>  {{instance.time}}</p>
+
+                        </div>
+                    </div> 
+                </div>
+            </div> <!-- end row -->
+        </div><!-- container -->
+    </div>
+    <!-- end page content -->
+{% endblock content %}
+{% block static %}
+<style>
+    
+    
+</style>
+{% endblock %}
+        

@@ -1,0 +1,137 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block content %}
+    <!-- Page Content-->
+    <div class="page-content">
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="row">
+                            <div class="col">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url 'app' %}">Dashboard</a></li>
+                                    <li class="breadcrumb-item active">{{page_title}} : <span class="text-dark font-weight-bold"> {{instance.name}}</span></li>
+                                </ol>
+                            </div><!--end col-->
+                        </div><!--end row-->                                                              
+                    </div><!--end page-title-box-->
+                </div><!--end col-->
+            </div><!--end row-->
+            <div class="row">
+                <div class="card-body">
+                    <h5 class="text-primary">Basic Info</h5>
+                    <div class="card-body card card-padding">
+                        <div class="row">
+                                               
+                            <div class="col-sm-3">    
+                                <h6 class="text-dark ">Name : </h6>
+                                <p class="item-text">{{instance.name}}</p>
+                            </div>
+                            <div class="col-sm-3"> 
+                                <h6 class="text-dark ">Phone : </h6>
+                                <p class="item-text">{{instance.phone}}</p>
+                            </div>
+                            <div class="col-sm-3">    
+                                <h6 class="text-dark ">Email : </h6>
+                                <p class="item-text">{{instance.email}}</p>
+                            </div>                                
+                            <div class="col-sm-3">    
+                                <h6 class="text-dark ">Age : </h6>
+                                <p class="item-text">{{instance.age}}</p>
+                            </div>
+                            <div class="col-sm-3">    
+                                <h6 class="text-dark ">Designation : </h6>
+                                <p class="item-text">{{instance.designation}}</p>
+                            </div>
+                            <div class="col-sm-3">    
+                                <h6 class="text-dark ">Salary : </h6>
+                                <p class="item-text">{{instance.salary}}</p>
+                            </div>
+                            
+                            <div class="col-sm-3">    
+                                <h6 class="text-dark ">Account Holder Name : </h6>
+                                <p class="item-text">{{instance.account_holder_name}}</p>
+                            </div>
+                            <div class="col-sm-3"> 
+                                <h6 class="text-dark ">Account Number : </h6>
+                                <p class="item-text">{{instance.account_number}}</p>
+                            </div>
+                            <div class="col-sm-3">    
+                                <h6 class="text-dark ">Bank Name: </h6>
+                                <p class="item-text">{{instance.bank_name}}</p>
+                            </div>                                
+                            <div class="col-sm-3">    
+                                <h6 class="text-dark ">Bank Branch : </h6>
+                                <p class="item-text">{{instance.bank_branch}}</p>
+                            </div>
+                            <div class="col-sm-3">    
+                                <h6 class="text-dark ">Bank IFSC : </h6>
+                                <p class="item-text">{{instance.bank_ifsc}}</p>
+                            </div>
+                            <div class="col-sm-6">    
+                                <h6 class="text-dark ">Address : </h6>
+                                <p class="item-text">{{instance.address}}</p>
+                            </div>
+                        </div>
+
+                            
+                    </div>
+                        
+                </div> 
+                                    
+            </div>
+
+
+            <div class="row">
+                <div class="card-body">
+                    <h5 class="text-primary mb-2" >User Details</h5>
+                    <div class="card-body card card-padding">
+                        <div class="row">
+                                       
+                            <div class="col-sm-3">    
+                                <h6 class="text-dark ">User Name : </h6>
+                                <p class="item-text">{{instance.user}}</p>
+                            </div>
+                            <div class="col-sm-3">    
+                                <h6 class="text-dark ">Password : </h6>
+                                <p class="item-text">{{instance.password}}</p>
+                                <a class="btn btn-outline-danger btn-md btn-icon-text" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg"   href="" > Change <i class="ti-plus btn-icon-append"></i></a>               
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+
+            <div class="row">
+                <div class="card-body">
+                    <h5 class="text-primary mb-2">Permissions</h5>
+                    <div class="card-body card card-padding">
+                        <div class="row">
+                            
+                            {% for item in permissions %}
+                            <div class="col-sm-3">
+                                <p> <span class="text-dark">{{item.name}}</span> </p>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div> 
+            </div>
+                
+
+        </div> <!-- end row -->
+
+        {% include 'dashboard/includes/update_password.html'%}
+    </div><!-- container -->
+    <!-- end page content -->
+{% endblock content %}
+{% block static %}
+<style>
+    
+    
+</style>
+{% endblock %}
+        

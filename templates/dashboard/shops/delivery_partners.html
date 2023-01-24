@@ -1,0 +1,92 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <!-- Page Content-->
+    <div class="page-content">
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="row">
+                            <div class="col">
+                                <h4 class="page-title">{{page_title}}</h4>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url 'app' %}">Dashboard</a></li>
+                                    <li class="breadcrumb-item active">{{app_name}}</li>
+                                    <li class="breadcrumb-item active">{{page_title}}</li>
+                                </ol>
+                            </div><!--end col-->
+                            <div class="col-auto align-self-center">
+                                <a class="btn btn-outline-success btn-icon-text"  href="{% url 'shops:delivery_partner_create' %}" >+ Create <i class="ti-plus btn-icon-append"></i></a>
+                            </div><!--end col--> 
+                        </div><!--end row-->                                                              
+                    </div><!--end page-title-box-->
+                </div><!--end col-->
+            </div><!--end row-->
+            <!-- end page title end breadcrumb -->
+            {% if instances %}
+                <div class="row">
+                    
+                    <div class="col-12 d-flex justify-content-start flex-wrap">
+                        {% for instance in instances %}
+                        <div class="col-4 mb-2" style="margin-right:10px;">
+                            <div class="rounded-pill bg-soft-secondary iq-my-cart">
+                                <div class="d-flex align-items-center justify-content-between profile-img4">
+                                    
+                                   <div class="d-flex align-items-center profile-content">
+                                      <div>
+                                         <h6 class="mb-1 heading-title fw-bolder">{{instance.name}}</h6>
+                                    
+                                      </div>
+                                   </div>
+                                   <div class="me-4 text-end">
+                                      
+                                      <p class="mb-0 text-dark">
+                                            <a href="{% url 'shops:gallery_type_edit' pk=instance.pk %}" class="mr-2 btn btn-sm btn-icon btn-success"><i class="las la-pencil-alt"></i></a>
+                                            <a class="action-button remove redirect  btn btn-sm btn-icon btn-success"
+                                                data-id="{{instance.pk}}" data-text="{{confirm_delete_message}}" data-title="Are you sure?" href="{% url 'shops:gallery_type_delete' pk=instance.pk %}"><i class="las la-trash-alt"></i></a>
+                                      </p>
+                                   </div>
+                                </div>
+                             </div>
+                        </div>
+                        {% endfor %}
+                        
+                    </div>
+                    
+                     <!-- end col  -->
+                </div> 
+                <!-- end row -->
+
+            {% else %}
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">  
+                            <div class="text-center">
+                                <img class="mb-3 rounded-circle" width="500px;" src="{% static 'dashboard/images/nothing_found.jpg' %}" alt="" /> 
+                                <br />                                     
+                                <a  href="{% url 'general:delivery_partner_create' %}" class="btn btn-outline-success btn-icon-text">Create {{page.title}}</a>
+                            </div>
+                        </div><!--end card-body-->
+                    </div><!--end card-->
+                </div><!--end col-->  
+            {% endif %}
+        </div><!-- container -->
+    </div>
+    <!-- end page content -->
+{% endblock content %}
+{% block static %}
+<style>
+    .col-4{
+        width: 31%;
+    }
+    .item{
+        padding: 5px 10px;
+    }
+</style>
+{% endblock %}
+
+        

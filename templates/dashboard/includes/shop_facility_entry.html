@@ -1,0 +1,230 @@
+{% load static %}
+<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal-dialog modal-md">
+       <div class="modal-content">
+          <div class="modal-header">
+             <h5 class="modal-title">Add New Dish</h5>
+             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+             </button>
+          </div>
+          <div class="modal-body">
+            <form class="ajax reload" method="post"  enctype="multipart/form-data" action="{% url 'shops:dish_create' %}">
+                {% csrf_token %}
+                    <div class="card-body card-padding">
+                        <div class="row">
+                            <div class="col-sm-6">
+        
+                                <div class="form-group fg-line">
+                                    <label for="{{ dish_form.name.id_for_label }}">
+                                        {{ dish_form.name.label }}
+                                        {% if dish_form.name.field.required %}
+                                            <small class="star text-danger">*</small>
+                                        {% endif %}
+        
+                                        {% if dish_form.name.help_text %}
+                                            <span data-original-title="Field Info" title="" data-content="{{ dish_form.name.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+                                        {% endif %}
+                                    </label>
+                                    {{ dish_form.name }}
+        
+                                    {% if dish_form.name.errors %}
+                                        <label class="error">{{ dish_form.name.errors.as_text }}</label>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                {% if is_edit %}
+                                    {% if instance.image %}
+                                        <div class="lgi-heading">Existing Image</div>
+                                        <div class="main-Image" >
+                                            <img src="{{ instance.image.url }}" alt="Image" style="width:200px; ">
+                                        </div>
+                                        <br />
+                                    {% endif %}
+                                {% endif %}
+        
+                                <div class="form-group fg-line">
+                                    <label for="{{ dish_form.image.id_for_label }}">
+                                        {{ dish_form.image.label }}
+                                        {% if dish_form.image.field.required %}
+                                            <small class="star text-danger">*</small>
+                                        {% endif %}
+        
+                                        {% if dish_form.image.help_text %}
+                                            <span data-original-title="Field Info" title="" data-content="{{ dish_form.image.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+                                        {% endif %}
+                                    </label>
+                                    {{ dish_form.image }}
+        
+                                    {% if dish_form.image.errors %}
+                                        <label class="error">{{ dish_form.image.errors.as_text }}</label>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <!-- {{ dish_form.shop }} -->
+                                <div class="form-group fg-line">
+                                    <label for="{{ dish_form.cuisine.id_for_label }}">
+                                        {{ dish_form.cuisine.label }}
+                                        {% if dish_form.cuisine.field.required %}
+                                            <small class="star text-danger">*</small>
+                                        {% endif %}
+        
+                                        {% if dish_form.cuisine.help_text %}
+                                            <span data-original-title="Field Info" title="" data-content="{{ dish_form.cuisine.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+                                        {% endif %}
+                                    </label>
+                                    {{ dish_form.cuisine }}
+        
+                                    {% if dish_form.cuisine.errors %}
+                                        <label class="error">{{ dish_form.cuisine.errors.as_text }}</label>
+                                    {% endif %}
+                                </div>
+        
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <!-- {{ dish_form.shop }} -->
+                                <div class="form-group fg-line">
+                                    <label for="{{ dish_form.dish_category.id_for_label }}">
+                                        {{ dish_form.dish_category.label }}
+                                        {% if dish_form.dish_category.field.required %}
+                                            <small class="star text-danger">*</small>
+                                        {% endif %}
+        
+                                        {% if dish_form.dish_category.help_text %}
+                                            <span data-original-title="Field Info" title="" data-content="{{ dish_form.dish_category.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+                                        {% endif %}
+                                    </label>
+                                    {{ dish_form.dish_category }}
+        
+                                    {% if dish_form.dish_category.errors %}
+                                        <label class="error">{{ dish_form.dish_category.errors.as_text }}</label>
+                                    {% endif %}
+                                </div>
+        
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <!-- {{ dish_form.shop }} -->
+                                <div class="form-group fg-line">
+                                    <label for="{{ dish_form.dish_timing.id_for_label }}">
+                                        {{ dish_form.dish_timing.label }}
+                                        {% if dish_form.dish_timing.field.required %}
+                                            <small class="star text-danger">*</small>
+                                        {% endif %}
+        
+                                        {% if dish_form.dish_timing.help_text %}
+                                            <span data-original-title="Field Info" title="" data-content="{{ dish_form.dish_timing.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+                                        {% endif %}
+                                    </label>
+                                    {{ dish_form.dish_timing }}
+        
+                                    {% if dish_form.dish_timing.errors %}
+                                        <label class="error">{{ dish_form.dish_timing.errors.as_text }}</label>
+                                    {% endif %}
+                                </div>
+        
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <!-- {{ dish_form.shop }} -->
+                                <div class="form-group fg-line">
+                                    <label for="{{ dish_form.dietary_type.id_for_label }}">
+                                        {{ dish_form.dietary_type.label }}
+                                        {% if dish_form.dietary_type.field.required %}
+                                            <small class="star text-danger">*</small>
+                                        {% endif %}
+        
+                                        {% if dish_form.dietary_type.help_text %}
+                                            <span data-original-title="Field Info" title="" data-content="{{ dish_form.dietary_type.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+                                        {% endif %}
+                                    </label>
+                                    {{ dish_form.dietary_type }}
+        
+                                    {% if dish_form.dietary_type.errors %}
+                                        <label class="error">{{ dish_form.dietary_type.errors.as_text }}</label>
+                                    {% endif %}
+                                </div>
+        
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <!-- {{ dish_form.shop }} -->
+                                <div class="form-group fg-line">
+                                    <label for="{{ dish_form.is_verified.id_for_label }}">
+                                        {{ dish_form.is_verified.label }}
+                                        {% if dish_form.is_verified.field.required %}
+                                            <small class="star text-danger">*</small>
+                                        {% endif %}
+        
+                                        {% if dish_form.is_verified.help_text %}
+                                            <span data-original-title="Field Info" title="" data-content="{{ dish_form.is_verified.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+                                        {% endif %}
+                                    </label>
+                                    {{ dish_form.is_verified }}
+        
+                                    {% if dish_form.is_verified.errors %}
+                                        <label class="error">{{ dish_form.is_verified.errors.as_text }}</label>
+                                    {% endif %}
+                                </div>
+        
+                            </div>
+                        </div>
+                        
+                        <div class="m-t-20">
+                        <button type="submit" class="btn btn-success waves-effect">Submit</button>
+                        </div>
+                    </div>
+            </form>
+          </div>
+       </div>
+    </div>
+</div> 
+
+
+    {{dish_form.media}}
+    <style>
+        .select2-dropdown{
+            z-index:1061 !important;
+        }
+        .select2-container--default{
+            width: 100%;
+        }
+        .select2-container .select2-selection--single {
+            height: calc(2.5em + .1rem + 1px);
+        }
+        .select2-container--default .select2-selection--single {
+            border: 1px solid #e3ebf6;
+        }
+        .select2-container--default .select2-results__option--highlighted[aria-selected] {
+            color: #4d65d9;
+        }
+
+        .dynamic-formset-add td{
+            text-align: center !important;
+        }
+        input[type=number]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: 26px;
+            position: absolute;
+            top: 8px;
+            right: 14px;
+            width: 20px; 
+        }.select2-container--default .select2-selection--single {
+            border-radius: 1.25rem;
+            line-height:1.75;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+        }
+    </style>

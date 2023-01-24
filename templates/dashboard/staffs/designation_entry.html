@@ -1,0 +1,90 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <!-- Page Content-->
+    <div class="page-content">
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="row">
+                            <div class="col">
+                                <h4 class="page-title">{{page_title}}</h4>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url 'app' %}">Dashboard</a></li>
+                                    <li class="breadcrumb-item active">{{app_name}}</li>
+                                    <li class="breadcrumb-item active">{{page_title}}</li>
+                                </ol>
+                            </div><!--end col-->
+                        </div><!--end row-->                                                              
+                    </div><!--end page-title-box-->
+                </div><!--end col-->
+            </div><!--end row-->
+            <!-- end page title end breadcrumb -->
+            
+            <div class="row">
+                <div class="card-body">
+                    <form class="ajax reset redirect" method="post"  enctype="multipart/form-data" action="{{url}}">
+                    {% csrf_token %}
+                        <div class="card-body card-padding">
+                            <div class="row">
+                                <div class="col-sm-6">
+            
+                                    <div class="form-group fg-line">
+                                        <div class="form-group fg-line">
+                                            <label for="{{ form.name.id_for_label }}">
+                                                {{ form.name.label }}
+                                                {% if form.name.field.required %}
+                                                    <small class="star text-danger">*</small>
+                                                {% endif %}
+                
+                                                {% if form.name.help_text %}
+                                                    <span data-original-title="Field Info" title="" data-content="{{ form.name.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+                                                {% endif %}
+                                            </label>
+                                            {{ form.name }}
+                
+                                            {% if form.name.errors %}
+                                                <label class="error">{{ form.name.errors.as_text }}</label>
+                                            {% endif %}
+                                        </div>
+                                </div>
+                            </div>
+                           
+                            
+                            <div class="m-t-20">
+                            <button type="submit" class="btn btn-success waves-effect">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div> 
+                <!-- end row -->
+        </div><!-- container -->
+    </div>
+
+
+    <!-- end page content -->
+{% endblock content %}
+{% block static %}
+    {% load static %}
+    {{form.media}}
+    <script>
+        $('.select-all').click(function(){
+            let value = $(this).val();
+            if ($(this).hasClass('checked-all')){
+                $(`.form-check.${value}`).find('input[type=checkbox]').prop('checked',false);
+                $(this).removeClass('checked-all');
+                $(this).siblings('p.label').text("Check all")
+            } else {
+                $(`.form-check.${value}`).find('input[type=checkbox]').prop('checked',true);
+                $(this).addClass('checked-all');
+                $(this).siblings('p.label').text("Uncheck all")
+
+            }
+    })
+    </script>
+{% endblock  %}

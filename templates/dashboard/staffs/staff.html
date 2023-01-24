@@ -1,0 +1,463 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block content %}
+    <!-- Page Content-->
+    <div class="page-content">
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row mb-3">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="row">
+                            <div class="col">
+                                <h2 class="page-title">{{page_title}} </h2>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url 'app' %}">Dashboard</a></li>
+                                    <li class="breadcrumb-item"><a href="{% url 'staffs:staffs' %}">{{app_name}}</a></li>
+                                    <li class="breadcrumb-item active">{{page_title}} : <span class="text-dark font-weight-bold"> {{instance.name}}</span></li>
+                                </ol>
+                            </div><!--end col-->
+                            <div class="col-auto align-self-center">
+                                <a class="btn btn-outline-primary btn-icon-text"   href="{% url 'staffs:staff_create' %}" > New <i class="las la-plus"></i></a>
+                                <a class="btn btn-outline-primary btn-icon-text"   href="{% url 'staffs:staff_edit' pk=instance.pk %}" >Edit <i class="las la-pen btn-icon-append"></i></a>
+                                <a class="action-button remove redirect btn btn-outline-danger btn-icon-text"
+                                data-id="{{instance.pk}}" data-text="{{confirm_delete_message}}" data-title="Are you sure?" href="{% url 'staffs:staff_delete' pk=instance.pk %}">Delete <i class="las la-trash btn-icon-append"></i></a>
+                            </div><!--end col-->  
+                        </div><!--end row-->                                                              
+                    </div><!--end page-title-box-->
+                </div><!--end col-->
+            </div><!--end row-->
+           
+            <div class="row">
+                <div class="container d-flex justify-content-between">
+                    <div class="col-12 p-5">
+                        <div class="customer-box">
+                            <div class="main-box">
+                                <div class="top-box" style="background:url({% static 'dashboard/images/customer_2.jpg' %}); background-size:cover;">
+                                    <div class="overlay"></div>
+                                </div>
+                                <div class="bottom-box d-flex justify-content-between">
+                                    <div class="left d-flex">
+                                        <div class="profile-img22 position-relative me-3 mb-3 mb-lg-0">
+                                            {% if instance.profile %}
+                                                <img src="{{instance.profile.url}}" class="avatar-rounded" width="200" height="200" alt="profile-image">
+                                            {% else %}
+                                                <img src="{% static 'dashboard/images/User-profile/avatar.png' %}" class="avatar-rounded" width="200" height="200"  alt="profile-image">
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="personal-info">
+                                        <div class="left">
+                                            <h4 class="me-2 mb-1 text-black">{{instance.name}}</h4>
+                                            {% if instance.email %}
+                                                <h6 class="me-2 mb-1 text-secondary">{{instance.email}}</h6>
+                                            {% endif %}
+                                            <h6 class="me-2 text-secondary">{{instance.phone}}</h6>
+                                            <span class="d-flex">
+                                                <!-- <svg width="19" height="19" class="me-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M21 10.8421C21 16.9172 12 23 12 23C12 23 3 16.9172 3 10.8421C3 4.76697 7.02944 1 12 1C16.9706 1 21 4.76697 21 10.8421Z" stroke="#07143B" stroke-width="1.5"/>
+                                                <circle cx="12" cy="9" r="3" stroke="#07143B" stroke-width="1.5"/>
+                                                </svg> -->
+                                                <h6 class="mb-0 text-secondary">{{instance.location}}</h6></span>
+                                        </div>
+                                        <div class="right">
+                                            <a class="btn btn-primary btn-sm btn-icon-text mb-2"   href="{% url 'staffs:activities' pk=instance.pk %}" > Activities <i class="las la-eye"></i></a>
+                                            <a class="btn btn-primary btn-sm btn-icon-text mb-2"   href="{% url 'staffs:update_permissions' pk=instance.pk %}" > Permissions <i class="las la-user-shield"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="data-box">
+                                    <ul class="nav nav-tabs" id="myTab-two" role="tablist">
+                                        <li class="nav-item">
+                                           <a class="nav-link active text-blue" id="home-tab-two" data-bs-toggle="tab" href="#home-two" role="tab" aria-controls="home" aria-selected="true">Personal Details</a>
+                                        </li>
+                                        <li class="nav-item">
+                                           <a class="nav-link text-blue" id="profile-tab-two" data-bs-toggle="tab" href="#profile-two" role="tab" aria-controls="profile" aria-selected="false">Bank Details</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link text-blue" id="profile-tab-three" data-bs-toggle="tab" href="#profile-three" role="tab" aria-controls="profile-three" aria-selected="false">User Details</a>
+                                        </li>                                         
+                                        <li class="nav-item">
+                                            <a class="nav-link text-blue" id="profile-tab-four" data-bs-toggle="tab" href="#profile-four" role="tab" aria-controls="profile-four" aria-selected="false">Permissions</a>
+                                         </li>
+                                        
+                                     </ul>
+                                     <div class="tab-content" id="myTabContent-1">
+                                        <div class="tab-pane fade show active" id="home-two" role="tabpanel" aria-labelledby="home-tab-two">
+                                            <div class="card item-box">
+                                                <div class="row">
+                                                    <div class="col-sm-4"> 
+                                                        <h6 class="text-dark ">Designation : </h6>
+                                                        <p class="item-text">{{instance.designation}}</p>
+                                                    </div>
+                                                    <div class="col-sm-4">    
+                                                        <h6 class="text-dark ">Age : </h6>
+                                                        <p class="item-text">{{instance.age}}</p>
+                                                    </div>
+                                                    <div class="col-sm-4">    
+                                                        <h6 class="text-dark ">Salary: </h6>
+                                                        <p class="item-text">{{instance.salary}}</p>
+                                                    </div>                                
+                                                    <div class="col-sm-4">    
+                                                        <h6 class="text-dark ">Address : </h6>
+                                                        <p class="item-text">{{instance.address}}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="profile-two" role="tabpanel" aria-labelledby="profile-tab-two">
+                                            <div class="tab-pane fade show active" id="home-two" role="tabpanel" aria-labelledby="home-tab-two">
+                                                <div class="card item-box">
+                                                    <div class="row">
+                                                        <div class="col-sm-4">    
+                                                            <h6 class="text-dark ">Account Holder Name : </h6>
+                                                            <p class="item-text">{{instance.account_holder_name}}</p>
+                                                        </div>
+                                                        <div class="col-sm-4"> 
+                                                            <h6 class="text-dark ">Account Number : </h6>
+                                                            <p class="item-text">{{instance.account_number}}</p>
+                                                        </div>
+                                                        <div class="col-sm-4">    
+                                                            <h6 class="text-dark ">Bank Name: </h6>
+                                                            <p class="item-text">{{instance.bank_name}}</p>
+                                                        </div>                                
+                                                        <div class="col-sm-4">    
+                                                            <h6 class="text-dark ">Bank Branch : </h6>
+                                                            <p class="item-text">{{instance.bank_branch}}</p>
+                                                        </div>
+                                                        <div class="col-sm-4">    
+                                                            <h6 class="text-dark ">Bank IFSC : </h6>
+                                                            <p class="item-text">{{instance.bank_ifsc}}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="profile-three" role="tabpanel" aria-labelledby="profile-tab-three">
+                                            <div class="tab-pane fade show active" id="home-two" role="tabpanel" aria-labelledby="home-tab-two">
+                                                <div class="card item-box">
+                                                    <div class="row">
+                                                        <div class="col-sm-4">    
+                                                            <h6 class="text-dark ">User Name : </h6>
+                                                            <p class="item-text">{{instance.user}}</p>
+                                                        </div>
+                                                        {% if user.is_superuser %}
+                                                        <div class="col-sm-4">    
+                                                            <h6 class="text-dark ">Password : </h6>
+                                                            <p class="item-text">{{instance.password}}</p>
+                                                        </div>
+                                                        {% else %}
+                                                        <div class="col-sm-4">    
+                                                            <h6 class="text-dark ">Password : </h6>
+                                                            <p class="item-warning">Contact Administrator for password</p>
+                                                        </div>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="profile-four" role="tabpanel" aria-labelledby="profile-tab-four">
+                                            <div class="tab-pane fade show active" id="home-two" role="tabpanel" aria-labelledby="home-tab-two">
+                                                <section id="help">
+                                                    <div class="wrapper">
+                                                      <div class="help-center">
+                                                        <ul>
+                                                        
+                                                          <li class="active">
+                                                            <div class="top">
+                                                                <h4>Brands</h4>
+                                                                <img src="{% static 'dashboard/images/bottom arrow.svg' %}" alt="Top-arrow" />
+                                                              </div>
+                                                              <div class="bottom row">
+                                                                  {% if brand_permissions %}
+                                                                      {% for permission in brand_permissions %}
+                                                                        <ul class="col-sm-2"> 
+                                                                            <li>
+                                                                                {{forloop.counter}}. {{permission.name}}
+                                                                            </li>
+                                                                        </ul>
+                                                                      {% endfor %}
+                                                                  {% else %}
+                                                                      <h6 class="text-danger text-center">No permissions</h6>
+                                                                  {% endif %}
+                                                              </div>
+                                                          </li>
+
+                                                          <li>
+                                                            <div class="top">
+                                                              <h4>Dishes</h4>
+                                                              <img src="{% static 'dashboard/images/bottom arrow.svg' %}" alt="Top-arrow" />
+                                                            </div>
+                                                            <div class="bottom row">
+                                                                {% if dish_permissions %}
+                                                                    {% for permission in dish_permissions %}
+                                                                        <ul class="col-sm-2"> 
+                                                                            <li>
+                                                                                {{forloop.counter}}. {{permission.name}}
+                                                                            </li>
+                                                                        </ul>
+                                                                    {% endfor %}
+                                                                {% else %}
+                                                                    <h6 class="text-danger text-center">No permissions</h6>
+                                                                {% endif %}
+                                                            </div>
+                                                          </li>
+
+                                                          <li>
+                                                            <div class="top">
+                                                                <h4>General</h4>
+                                                                <img src="{% static 'dashboard/images/bottom arrow.svg' %}" alt="Top-arrow" />
+                                                              </div>
+                                                              <div class="bottom row">
+                                                                  {% if general_permissions %}
+                                                                      {% for permission in general_permissions %}
+                                                                          <ul class="col-sm-2"> 
+                                                                            <li>
+                                                                                {{forloop.counter}}. {{permission.name}}
+                                                                            </li>
+                                                                        </ul>
+                                                                      {% endfor %}
+                                                                  {% else %}
+                                                                      <h6 class="text-danger text-center">No permissions</h6>
+                                                                  {% endif %}
+                                                              </div>
+                                                          </li>
+
+                                                          <li>
+                                                            <div class="top">
+                                                              <h4>Shops</h4>
+                                                              <img src="{% static 'dashboard/images/bottom arrow.svg' %}" alt="Top-arrow" />
+                                                            </div>
+                                                            <div class="bottom row">
+                                                                {% if shop_permissions %}
+                                                                    {% for permission in shop_permissions %}
+                                                                        <ul class="col-sm-2"> 
+                                                                            <li>
+                                                                                {{forloop.counter}}. {{permission.name}}
+                                                                            </li>
+                                                                        </ul>
+                                                                    {% endfor %}
+                                                                {% else %}
+                                                                    <h6 class="text-danger text-center">No permissions</h6>
+                                                                {% endif %}
+                                                            </div>
+                                                          </li>
+
+                                                          <li>
+                                                            <div class="top">
+                                                              <h4>Staffs</h4>
+                                                              <img src="{% static 'dashboard/images/bottom arrow.svg' %}" alt="Top-arrow" />
+                                                            </div>
+                                                            <div class="bottom row">
+                                                                {% if staff_permissions %}
+                                                                    {% for permission in staff_permissions %}
+                                                                        <ul class="col-sm-2"> 
+                                                                            <li>
+                                                                                {{forloop.counter}}. {{permission.name}}
+                                                                            </li>
+                                                                        </ul>
+                                                                    {% endfor %}
+                                                                {% else %}
+                                                                    <h6 class="text-danger text-center">No permissions</h6>
+                                                                {% endif %}
+                                                            </div>
+                                                          </li>
+
+                                                          <li>
+                                                            <div class="top">
+                                                              <h4>User</h4>
+                                                              <img src="{% static 'dashboard/images/bottom arrow.svg' %}" alt="Top-arrow" />
+                                                            </div>
+                                                            <div class="bottom row">
+                                                                {% if user_permissions %}
+                                                                    {% for permission in user_permissions %}
+                                                                        <ul class="col-sm-2"> 
+                                                                            <li>
+                                                                                {{forloop.counter}}. {{permission.name}}
+                                                                            </li>
+                                                                        </ul>
+                                                                    {% endfor %}
+                                                                {% else %}
+                                                                    <h6 class="text-danger text-center">No permissions</h6>
+                                                                {% endif %}
+                                                            </div>
+                                                          </li>
+                                                        
+                                                        </ul>
+                                                      </div>
+                                                    </div>
+                                                </section>
+                                            </div>
+                                        </div>
+                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+
+    </div><!-- container -->
+    <!-- end page content -->
+{% endblock content %}
+{% block static %}
+<style>
+    .checked {
+        color: coral;
+    }
+    .overlay{
+        background: rgba(0, 0, 0, 0.5);
+        opacity: 0.8;
+    }
+    .profile-img22{
+        left: 50px;
+        bottom: 15px
+    }
+
+    .avatar-rounded{
+        <!-- border: 3px  solid #b2b6e9; -->
+    }
+    .story{
+        background: linear-gradient(207.2deg, #3FBA69 2.48%, #4EFB85 90.62%);
+        padding: 3px;
+        position: relative;
+    }
+    .top-box{
+        background-repeat: no-repeat;
+        padding:100px;
+        display:none;
+    }
+    .bottom-box{
+        background: #fefffe;
+        border-radius: 24px 24px 0 0;
+        padding: 40px 10px; 
+        margin-top:50px;
+    }
+    .personal-info{
+        width: 70%;
+        padding: 10px 30px;
+        display: flex;
+        justify-content: space-between;
+    }
+    .text-blue{
+        color: #0FBA12;
+        font-weight: 600;
+    }
+    .nav-tabs , .nab-link{
+        border-bottom: 0;
+        margin-bottom: 0;
+        background: #fefffe !important;
+    }
+    .nav-tabs .nav-link.active{
+        border-bottom: 2px solid #0FBA12;
+        color:#fff;
+        background:#0FBA12 !important;
+    }
+    .nav-tabs .nav-link.active:hover,.nav-tabs .nav-link:focus{
+        color: #fff;
+    }
+    .tab-content .card{
+        border-radius: 0 !important;
+    }
+    .item-box{
+        background: #fefffe;
+        padding: 20px;
+    }
+    .activity{
+    }
+    .activity h4{
+        color: #383f92;
+        font-weight: 600;
+        font-size: 16px;
+    }
+    #help {
+        padding: 50px 0;
+        background-color: #fbfbfb;
+      }
+      
+      #help .wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      
+      #help .help-center {
+        width: 100%;
+        position: relative;
+        z-index: 5;
+      }
+      
+      
+      #help .help-center .top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      #help .help-center ul{
+        padding: 0 20px;
+      }
+      
+      #help .help-center ul li {
+        margin-bottom: 16px;
+        background-color: #fff;
+        border-radius: 16px;
+        padding: 24px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        list-style: none;
+      }
+      
+      #help .help-center ul li.active img {
+        transform: rotate(180deg);
+      }
+      
+      #help .help-center .top h4 {
+        font-size: 22px;
+        font-weight: 500;
+      }
+      
+      #help .help-center .top img {
+        width: 20px;
+        transition: 0.3s ease;
+      }
+      
+      #help .help-center li .bottom {
+        display: none;
+        margin-top: 24px;
+        opacity: 0;
+        transition: 0.4s ease;
+      }
+      
+      #help .help-center .bottom p {
+        line-height: 1.3em;
+        font-size: 16px;
+        width: 87%;
+        color: #9c9c9c;
+      }
+      
+      #help .help-center .bottom  ul li{
+        margin-bottom: 0;
+      }
+      
+      #help .help-center li.active {
+        height: fit-content;
+        border: 1px solid #0FBA12;
+      }
+      
+      #help .help-center li.active .bottom {
+        display: flex;
+        opacity: 1;
+      }
+</style>
+<script>
+      // help-view-more
+  $("#help .help-center ul li").click(function () {
+    $("#help .help-center li.active").removeClass("active");
+    $(this).toggleClass("active");
+  });
+</script>
+{% endblock %}
+        

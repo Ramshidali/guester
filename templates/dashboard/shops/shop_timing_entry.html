@@ -1,0 +1,98 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <!-- Page Content-->
+    <div class="page-content">
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="row">
+                            <div class="col">
+                                <h4 class="page-title">{{page_title}}</h4>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url 'app' %}">Dashboard</a></li>
+                                    <li class="breadcrumb-item active">{{app_name}}</li>
+                                    <li class="breadcrumb-item active">{{page_title}}</li>
+                                </ol>
+                            </div><!--end col-->
+                        </div><!--end row-->                                                              
+                    </div><!--end page-title-box-->
+                </div><!--end col-->
+            </div><!--end row-->
+            <!-- end page title end breadcrumb -->
+            
+            <div class="row">
+                <div class="card-body">
+                    <form class="ajax reset redirect" method="post"  enctype="multipart/form-data" action="{{url}}">
+                    {% csrf_token %}
+                        <div class="card-body card-padding">
+                            <div class="row">
+                                <div class="col-sm-6">
+            
+                                    <div class="form-group fg-line">
+                                        <label for="{{ form.timing.id_for_label }}">
+                                            {{ form.timing.label }}
+                                            {% if form.timing.field.required %}
+                                                <small class="star text-danger">*</small>
+                                            {% endif %}
+            
+                                            {% if form.timing.help_text %}
+                                                <span data-original-title="Field Info" title="" data-content="{{ form.timing.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+                                            {% endif %}
+                                        </label>
+                                        {{ form.timing }}
+            
+                                        {% if form.timing.errors %}
+                                            <label class="error">{{ form.timing.errors.as_text }}</label>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="m-t-20">
+                            <button type="submit" class="btn btn-success waves-effect">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div> 
+                <!-- end row -->
+        </div><!-- container -->
+    </div>
+
+
+    
+    {{form.media}}
+    <!-- end page content -->
+{% endblock content %}
+{% block static %}
+<style>
+.preview img{
+    width: 200px;
+}
+</style>
+<script>
+    $("#id_image").change(function(event){
+            if(event.target.files.length > 0){
+              var src = URL.createObjectURL(event.target.files[0]);
+              var preview = document.getElementById("file-ip-1-preview");
+              preview.src = src;
+              preview.style.display = "block";
+            }
+          
+      }); 
+      $("#id_icon").change(function(event){
+        if(event.target.files.length > 0){
+          var src = URL.createObjectURL(event.target.files[0]);
+          var preview = document.getElementById("file-ip-2-preview");
+          preview.src = src;
+          preview.style.display = "block";
+        }
+      
+  }); 
+</script>
+{% endblock %}

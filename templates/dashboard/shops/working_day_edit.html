@@ -1,0 +1,135 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <!-- Page Content-->
+    <div class="page-content">
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="row">
+                            <div class="col">
+                                <h4 class="page-title">{{page_title}}</h4>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url 'app' %}">Dashboard</a></li>
+                                    <li class="breadcrumb-item active">{{app_name}}</li>
+                                    <li class="breadcrumb-item active">{{page_title}}</li>
+                                </ol>
+                            </div><!--end col-->
+                        </div><!--end row-->                                                              
+                    </div><!--end page-title-box-->
+                </div><!--end col-->
+            </div><!--end row-->
+            <!-- end page title end breadcrumb -->
+            
+            
+                <!-- end row -->
+        </div><!-- container -->
+        <div class="row">
+            <div class="card-body">
+                <form class="ajax reset redirect" method="post"  enctype="multipart/form-data" action="{{url}}">
+                {% csrf_token %}
+                    <div class="card-body card-padding">
+                        <div class="row">
+                            <div class="col-sm-6">
+        
+                                <div class="form-group fg-line">
+                                    <label for="{{ form.day.id_for_label }}">
+                                        {{ form.day.label }}
+                                        {% if form.day.field.required %}
+                                            <small class="star text-danger">*</small>
+                                        {% endif %}
+        
+                                        {% if form.day.help_text %}
+                                            <span data-original-title="Field Info" title="" data-content="{{ form.day.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+                                        {% endif %}
+                                    </label>
+                                    {{ form.day }}
+        
+                                    {% if form.day.errors %}
+                                        <label class="error">{{ form.day.errors.as_text }}</label>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+        
+                                <div class="form-group fg-line">
+                                    <label for="{{ form.start_time.id_for_label }}">
+                                        {{ form.start_time.label }}
+                                        {% if form.start_time.field.required %}
+                                            <small class="star text-danger">*</small>
+                                        {% endif %}
+        
+                                        {% if form.start_time.help_text %}
+                                            <span data-original-title="Field Info" title="" data-content="{{ form.start_time.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+                                        {% endif %}
+                                    </label>
+                                    {{ form.start_time }}
+        
+                                    {% if form.start_time.errors %}
+                                        <label class="error">{{ form.start_time.errors.as_text }}</label>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        
+                        
+                            <div class="col-sm-3">
+        
+                                <div class="form-group fg-line">
+                                    <label for="{{ form.end_time.id_for_label }}">
+                                        {{ form.end_time.label }}
+                                        {% if form.end_time.field.required %}
+                                            <small class="star text-danger">*</small>
+                                        {% endif %}
+        
+                                        {% if form.end_time.help_text %}
+                                            <span data-original-title="Field Info" title="" data-content="{{ form.end_time.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+                                        {% endif %}
+                                    </label>
+                                    {{ form.end_time }}
+        
+                                    {% if form.end_time.errors %}
+                                        <label class="error">{{ form.end_time.errors.as_text }}</label>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="m-t-20">
+                        <button type="submit" class="btn btn-success waves-effect">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div> 
+    </div>
+
+
+    
+    {{form.media}}
+    <!-- end page content -->
+{% endblock content %}
+{% block static %}
+<script src="{% static 'dashboard/js/jquery.formset.js' %}" type="text/javascript"></script>
+<script type="text/javascript">
+		$(document).ready(function(){
+			$('input[type=text]').focus(function () {
+	        $(this).select();
+	    		});
+
+	    		 $('.precaution_formset table tr.form_set_row').formset({
+                prefix: '{{ precaution_formset.prefix }}',
+                formCssClass: 'dynamic-formset1',
+                'added' : function (row) {
+                    row.find('.product_variant select').selectpicker();
+                }
+            });
+		  });
+</script>
+{{ precaution_formset.media}}
+{% endblock %}

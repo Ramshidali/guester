@@ -1,0 +1,131 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <!-- Page Content-->
+    <div class="page-content">
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="row">
+                            <div class="col">
+                                <h4 class="page-title">{{page_title}}</h4>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url 'app' %}">Dashboard</a></li>
+                                    <li class="breadcrumb-item active">{{app_name}}</li>
+                                    <li class="breadcrumb-item active">{{page_title}}</li>
+                                </ol>
+                            </div><!--end col-->
+                        </div><!--end row-->                                                              
+                    </div><!--end page-title-box-->
+                </div><!--end col-->
+            </div><!--end row-->
+            <!-- end page title end breadcrumb -->
+            
+            <div class="row">
+                <div class="card-body">
+                    <form class="ajax reset redirect" method="post"  enctype="multipart/form-data" action="{{url}}">
+                    {% csrf_token %}
+                        <div class="card-body card-padding">
+                            <div class="row">
+                                <div class="col-sm-6">
+            
+                                    <div class="form-group fg-line">
+                                        <label for="{{ form.delivery_partner.id_for_label }}">
+                                            {{ form.delivery_partner.label }}
+                                            {% if form.delivery_partner.field.required %}
+                                                <small class="star text-danger">*</small>
+                                            {% endif %}
+            
+                                            {% if form.delivery_partner.help_text %}
+                                                <span data-original-title="Field Info" title="" data-content="{{ form.delivery_partner.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+                                            {% endif %}
+                                        </label>
+                                        {{ form.delivery_partner }}
+            
+                                        {% if form.delivery_partner.errors %}
+                                            <label class="error">{{ form.delivery_partner.errors.as_text }}</label>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+            
+                                    <div class="form-group fg-line">
+                                        <label for="{{ form.shop_link.id_for_label }}">
+                                            {{ form.shop_link.label }}
+                                            {% if form.shop_link.field.required %}
+                                                <small class="star text-danger">*</small>
+                                            {% endif %}
+            
+                                            {% if form.shop_link.help_text %}
+                                                <span data-original-title="Field Info" title="" data-content="{{ form.shop_link.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+                                            {% endif %}
+                                        </label>
+                                        {{ form.shop_link }}
+            
+                                        {% if form.shop_link.errors %}
+                                            <label class="error">{{ form.shop_link.errors.as_text }}</label>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="m-t-20">
+                            <button type="submit" class="btn btn-success waves-effect">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div> 
+                <!-- end row -->
+        </div><!-- container -->
+    </div>
+
+
+    
+    {{form.media}}
+    <!-- end page content -->
+{% endblock content %}
+{% block static %}
+    {% load static %}
+    {{form.media}}
+    <style>
+        .select2-container--default{
+            width: 100%;
+        }
+        .select2-container .select2-selection--single {
+            height: calc(2.5em + .1rem + 1px);
+        }
+        .select2-container--default .select2-selection--single {
+            border: 1px solid #e3ebf6;
+        }
+        .select2-container--default .select2-results__option--highlighted[aria-selected] {
+            color: #4d65d9;
+        }
+
+        .dynamic-formset-add td{
+            text-align: center !important;
+        }
+        input[type=number]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: 26px;
+            position: absolute;
+            top: 8px;
+            right: 14px;
+            width: 20px; 
+        }.select2-container--default .select2-selection--single {
+            border-radius: 1.25rem;
+            line-height:1.75;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+        }
+    </style>
+{% endblock  %}

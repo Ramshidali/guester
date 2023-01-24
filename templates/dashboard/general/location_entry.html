@@ -1,0 +1,129 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <!-- Page Content-->
+    <div class="page-content">
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="row">
+                            <div class="col">
+                                <h4 class="page-title">{{page_title}}</h4>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url 'app' %}">Dashboard</a></li>
+                                    <li class="breadcrumb-item active">{{app_name}}</li>
+                                    <li class="breadcrumb-item active">{{page_title}}</li>
+                                </ol>
+                            </div><!--end col-->
+                        </div><!--end row-->                                                              
+                    </div><!--end page-title-box-->
+                </div><!--end col-->
+            </div><!--end row-->
+            <!-- end page title end breadcrumb -->
+            
+            <div class="row">
+                <div class="card-body">
+                    <form class="ajax reset redirect" method="post"  enctype="multipart/form-data" action="{{url}}">
+                    {% csrf_token %}
+                        <div class="card-body card-padding">
+                            <div class="row">
+                                <div class="col-sm-6">
+            
+                                    <div class="form-group fg-line">
+                                        <label for="{{ form.location.id_for_label }}">
+                                            {{ form.location.label }}
+                                            {% if form.location.field.required %}
+                                                <small class="star text-danger">*</small>
+                                            {% endif %}
+            
+                                            {% if form.location.help_text %}
+                                                <span data-original-title="Field Info" title="" data-content="{{ form.location.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+                                            {% endif %}
+                                        </label>
+                                        {{ form.location }}
+                                        <div id="map"></div>
+            
+                                        {% if form.location.errors %}
+                                            <label class="error">{{ form.location.errors.as_text }}</label>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+            
+                                    <div class="form-group fg-line">
+                                        <label for="{{ form.latitude.id_for_label }}">
+                                            {{ form.latitude.label }}
+                                            {% if form.latitude.field.required %}
+                                            <small class="star">*</small>
+                                            {% endif %}
+        
+                                            {% if form.latitude.help_text %}
+                                            <span data-original-title="Field Info" title=""
+                                                data-content="{{ form.latitude.help_text }}" data-placement="left"
+                                                data-toggle="popover" data-trigger="hover"
+                                                class="help-text-icon zmdi zmdi-info-outline"></span>
+                                            {% endif %}
+                                        </label>
+                                        {{ form.latitude }}
+        
+                                        {% if form.latitude.errors %}
+                                        <label class="error">{{ form.latitude.errors.as_text }}</label>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+            
+                                    <div class="form-group fg-line">
+                                        <label for="{{ form.longitude.id_for_label }}">
+                                            {{ form.longitude.label }}
+                                            {% if form.longitude.field.required %}
+                                            <small class="star">*</small>
+                                            {% endif %}
+        
+                                            {% if form.longitude.help_text %}
+                                            <span data-original-title="Field Info" title=""
+                                                data-content="{{ form.longitude.help_text }}" data-placement="left"
+                                                data-toggle="popover" data-trigger="hover"
+                                                class="help-text-icon zmdi zmdi-info-outline"></span>
+                                            {% endif %}
+                                        </label>
+                                        {{ form.longitude }}
+        
+                                        {% if form.longitude.errors %}
+                                        <label class="error">{{ form.longitude.errors.as_text }}</label>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="m-t-20">
+                            <button type="submit" class="btn btn-success waves-effect">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div> 
+                <!-- end row -->
+        </div><!-- container -->
+    </div>
+
+
+    
+    {{form.media}}
+    <!-- end page content -->
+{% endblock content %}
+{% block static %}
+{% load static %}
+
+    {% include 'dashboard/includes/location_js.html' %}
+
+{% endblock %}

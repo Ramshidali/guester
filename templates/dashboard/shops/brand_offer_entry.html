@@ -1,0 +1,201 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <!-- Page Content-->
+    <div class="page-content">
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="row">
+                            <div class="col">
+                                <h4 class="page-title">{{page_title}}</h4>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url 'app' %}">Dashboard</a></li>
+                                    <li class="breadcrumb-item active">{{app_name}}</li>
+                                    <li class="breadcrumb-item active">{{page_title}}</li>
+                                </ol>
+                            </div><!--end col-->
+                        </div><!--end row-->                                                              
+                    </div><!--end page-title-box-->
+                </div><!--end col-->
+            </div><!--end row-->
+            <!-- end page title end breadcrumb -->
+            
+            <div class="row">
+                <div class="card-body">
+                    <form class="ajax reset redirect" method="post"  enctype="multipart/form-data" action="{{url}}">
+                    {% csrf_token %}
+                        <div class="card-body card-padding">
+                            <div class="row">
+                                <div class="col-sm-6">
+            
+                                    <div class="form-group fg-line">
+                                        <label for="{{ form.brand.id_for_label }}">
+                                            {{ form.brand.label }}
+                                            {% if form.brand.field.required %}
+                                                <small class="star text-danger">*</small>
+                                            {% endif %}
+            
+                                            {% if form.brand.help_text %}
+                                                <span data-original-title="Field Info" title="" data-content="{{ form.brand.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+                                            {% endif %}
+                                        </label>
+                                        {{ form.brand }}
+            
+                                        {% if form.brand.errors %}
+                                            <label class="error">{{ form.brand.errors.as_text }}</label>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group fg-line">
+                                        <label for="{{ form.title.id_for_label }}">
+                                            {{ form.title.label }}
+                                            {% if form.title.field.required %}
+                                                <small class="star text-danger">*</small>
+                                            {% endif %}
+            
+                                            {% if form.title.help_text %}
+                                                <span data-original-title="Field Info" title="" data-content="{{ form.title.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+                                            {% endif %}
+                                        </label>
+                                        {{ form.title }}
+            
+                                        {% if form.title.errors %}
+                                            <label class="error">{{ form.title.errors.as_text }}</label>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group fg-line">
+                                        <label for="{{ form.start_date.id_for_label }}">
+                                            {{ form.start_date.label }}
+                                            {% if form.start_date.field.required %}
+                                                <small class="star text-danger">*</small>
+                                            {% endif %}
+            
+                                            {% if form.start_date.help_text %}
+                                                <span data-original-title="Field Info" title="" data-content="{{ form.start_date.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+                                            {% endif %}
+                                        </label>
+                                        {{ form.start_date }}
+            
+                                        {% if form.start_date.errors %}
+                                            <label class="error">{{ form.start_date.errors.as_text }}</label>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group fg-line">
+                                        <label for="{{ form.end_date.id_for_label }}">
+                                            {{ form.end_date.label }}
+                                            {% if form.end_date.field.required %}
+                                                <small class="star text-danger">*</small>
+                                            {% endif %}
+            
+                                            {% if form.end_date.help_text %}
+                                                <span data-original-title="Field Info" title="" data-content="{{ form.end_date.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+                                            {% endif %}
+                                        </label>
+                                        {{ form.end_date }}
+            
+                                        {% if form.end_date.errors %}
+                                            <label class="error">{{ form.end_date.errors.as_text }}</label>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    {% if is_edit %}
+                                        {% if instance.image %}
+                                            <div class="lgi-heading">Existing Image</div>
+                                            <div class="main-Image" >
+                                                <img src="{{ instance.image.url }}" alt="Image" style="width:50px; ">
+                                            </div>
+                                            <br />
+                                        {% endif %}
+                                    {% endif %}
+            
+                                    <div class="form-group fg-line">
+                                        <label for="{{ form.image.id_for_label }}">
+                                            {{ form.image.label }}
+                                            {% if form.image.field.required %}
+                                                <small class="star text-danger">*</small>
+                                            {% endif %}
+            
+                                            {% if form.image.help_text %}
+                                                <span data-original-title="Field Info" title="" data-content="{{ form.image.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+                                            {% endif %}
+                                        </label>
+                                        {{ form.image }}
+            
+                                        {% if form.image.errors %}
+                                            <label class="error">{{ form.image.errors.as_text }}</label>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="m-t-20">
+                            <button type="submit" class="btn btn-success waves-effect">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div> 
+                <!-- end row -->
+        </div><!-- container -->
+    </div>
+
+
+    
+{% endblock content %}
+{% block static %}
+    {% load static %}
+    
+    {{form.media}}
+    <style>
+        .select2-container--default{
+            width: 100%;
+        }
+        .select2-container .select2-selection--single {
+            height: calc(2.5em + .1rem + 1px);
+        }
+        .select2-container--default .select2-selection--single {
+            border: 1px solid #e3ebf6;
+        }
+        .select2-container--default .select2-results__option--highlighted[aria-selected] {
+            color: #4d65d9;
+        }
+
+        .dynamic-formset-add td{
+            text-align: center !important;
+        }
+        input[type=number]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: 26px;
+            position: absolute;
+            top: 8px;
+            right: 14px;
+            width: 20px; 
+        }.select2-container--default .select2-selection--single {
+            border-radius: 1.25rem;
+            line-height:1.75;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+        }
+    </style>
+{% endblock  %}

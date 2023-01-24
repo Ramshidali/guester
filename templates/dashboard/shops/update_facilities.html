@@ -1,0 +1,81 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <!-- Page Content-->
+    <div class="page-content">
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="row">
+                            <div class="col">
+                                <h4 class="page-title">{{page_title}}</h4>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url 'app' %}">Dashboard</a></li>
+                                    <li class="breadcrumb-item active">{{app_name}}</li>
+                                    <li class="breadcrumb-item active">{{page_title}}</li>
+                                </ol>
+                            </div><!--end col-->
+                        </div><!--end row-->                                                              
+                    </div><!--end page-title-box-->
+                </div><!--end col-->
+            </div><!--end row-->
+            <!-- end page title end breadcrumb -->
+            
+            <div class="row">
+                <div class="card-body">
+                    
+                       <form class="ajax redirect" enctype="multipart/form-data" method="post" action="{{url}}">
+                            {% csrf_token %}
+                            <h3>Basic Info</h3>
+                            <div class="card-body card card-padding">
+                                <div class="row">
+                                    
+    
+                                    
+                                    <div class="col-sm-3">
+    
+                                        <div class="form-group fg-line">
+                                            <label for="{{ form.facilities.id_for_label }}">
+                                                {{ form.facilities.label }}
+                                                {% if form.facilities.field.required %}
+                                                <small class="star">*</small>
+                                                {% endif %}
+    
+                                                {% if form.facilities.help_text %}
+                                                <span data-original-title="Field Info" title=""
+                                                    data-content="{{ form.facilities.help_text }}" data-placement="left"
+                                                    data-toggle="popover" data-trigger="hover"
+                                                    class="help-text-icon zmdi zmdi-info-outline">
+                                                    {% endif %}
+                                            </label>
+                                            {{ form.facilities }}
+    
+                                            {% if form.facilities.errors %}
+                                            <label class="error">{{ form.facilities.errors.as_text }}</label>
+                                            {% endif %}
+                                        </div>
+                                        <br>
+                                    </div>
+    
+                                </div>
+    
+                            </div>
+
+                            <div>
+                                <button type="submit" class="btn btn-primary waves-effect">Submit</button>
+                            </div>
+                        </form>
+                    
+                </div>
+            </div> 
+                <!-- end row -->
+        </div><!-- container -->
+    </div>
+
+
+    <!-- end page content -->
+{% endblock content %}

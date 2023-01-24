@@ -1,0 +1,266 @@
+<div class="sidebar-body pt-0 data-scrollbar">
+    <div class="navbar-collapse" id="sidebar">
+        <!-- Sidebar Menu Start -->
+        <ul class="navbar-nav iq-main-menu">
+            <li class="nav-item static-item">
+                <a class="nav-link static-item disabled" href="#" tabindex="-1">
+                    <span class="default-icon">Home</span>
+                    <span class="mini-icon">-</span>
+                </a>
+            </li>
+             <li class="nav-item">
+                <a class="nav-link" href="{% url 'app' %}" role="button" aria-expanded="false" aria-controls="home">
+                    <i class="icon">
+                        <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path opacity="0.4" d="M16.0756 2H19.4616C20.8639 2 22.0001 3.14585 22.0001 4.55996V7.97452C22.0001 9.38864 20.8639 10.5345 19.4616 10.5345H16.0756C14.6734 10.5345 13.5371 9.38864 13.5371 7.97452V4.55996C13.5371 3.14585 14.6734 2 16.0756 2Z" fill="currentColor"></path>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M4.53852 2H7.92449C9.32676 2 10.463 3.14585 10.463 4.55996V7.97452C10.463 9.38864 9.32676 10.5345 7.92449 10.5345H4.53852C3.13626 10.5345 2 9.38864 2 7.97452V4.55996C2 3.14585 3.13626 2 4.53852 2ZM4.53852 13.4655H7.92449C9.32676 13.4655 10.463 14.6114 10.463 16.0255V19.44C10.463 20.8532 9.32676 22 7.92449 22H4.53852C3.13626 22 2 20.8532 2 19.44V16.0255C2 14.6114 3.13626 13.4655 4.53852 13.4655ZM19.4615 13.4655H16.0755C14.6732 13.4655 13.537 14.6114 13.537 16.0255V19.44C13.537 20.8532 14.6732 22 16.0755 22H19.4615C20.8637 22 22 20.8532 22 19.44V16.0255C22 14.6114 20.8637 13.4655 19.4615 13.4655Z" fill="currentColor"></path>
+                        </svg>
+                    </i>
+                    <span class="item-name">Dashboard</span>
+                    <i class="right-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </i>
+                </a>
+            </li>
+            <li><hr class="hr-horizontal"></li>
+            <li class="nav-item static-item">
+                <a class="nav-link static-item disabled" href="#" tabindex="-1">
+                    <span class="default-icon">Menu</span>
+                    <span class="mini-icon">-</span>
+                </a>
+            </li>
+
+
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="collapse" href="#sidebar-special" role="button" aria-expanded="false" aria-controls="sidebar-special">
+                    <i class="icon">
+                        <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path opacity="0.4" d="M13.3051 5.88243V6.06547C12.8144 6.05584 12.3237 6.05584 11.8331 6.05584V5.89206C11.8331 5.22733 11.2737 4.68784 10.6064 4.68784H9.63482C8.52589 4.68784 7.62305 3.80152 7.62305 2.72254C7.62305 2.32755 7.95671 2 8.35906 2C8.77123 2 9.09508 2.32755 9.09508 2.72254C9.09508 3.01155 9.34042 3.24276 9.63482 3.24276H10.6064C12.0882 3.2524 13.2953 4.43736 13.3051 5.88243Z" fill="currentColor"></path>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M15.164 6.08279C15.4791 6.08712 15.7949 6.09145 16.1119 6.09469C19.5172 6.09469 22 8.52241 22 11.875V16.1813C22 19.5339 19.5172 21.9616 16.1119 21.9616C14.7478 21.9905 13.3837 22.0001 12.0098 22.0001C10.6359 22.0001 9.25221 21.9905 7.88813 21.9616C4.48283 21.9616 2 19.5339 2 16.1813V11.875C2 8.52241 4.48283 6.09469 7.89794 6.09469C9.18351 6.07542 10.4985 6.05615 11.8332 6.05615C12.3238 6.05615 12.8145 6.05615 13.3052 6.06579C13.9238 6.06579 14.5425 6.07427 15.164 6.08279ZM10.8518 14.7459H9.82139V15.767C9.82139 16.162 9.48773 16.4896 9.08538 16.4896C8.67321 16.4896 8.34936 16.162 8.34936 15.767V14.7459H7.30913C6.90677 14.7459 6.57311 14.4279 6.57311 14.0233C6.57311 13.6283 6.90677 13.3008 7.30913 13.3008H8.34936V12.2892C8.34936 11.8942 8.67321 11.5667 9.08538 11.5667C9.48773 11.5667 9.82139 11.8942 9.82139 12.2892V13.3008H10.8518C11.2542 13.3008 11.5878 13.6283 11.5878 14.0233C11.5878 14.4279 11.2542 14.7459 10.8518 14.7459ZM15.0226 13.1177H15.1207C15.5231 13.1177 15.8567 12.7998 15.8567 12.3952C15.8567 12.0002 15.5231 11.6727 15.1207 11.6727H15.0226C14.6104 11.6727 14.2866 12.0002 14.2866 12.3952C14.2866 12.7998 14.6104 13.1177 15.0226 13.1177ZM16.7007 16.4318H16.7988C17.2012 16.4318 17.5348 16.1139 17.5348 15.7092C17.5348 15.3143 17.2012 14.9867 16.7988 14.9867H16.7007C16.2885 14.9867 15.9647 15.3143 15.9647 15.7092C15.9647 16.1139 16.2885 16.4318 16.7007 16.4318Z" fill="currentColor"></path>
+                        </svg>
+                    </i>
+                    <span class="item-name">Dishes</span>
+                    <i class="right-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </i>
+                </a>
+                <ul class="sub-nav collapse" id="sidebar-special" data-bs-parent="#sidebar">
+                    <li class="nav-item">
+                        <a class="nav-link " href="{% url 'dishes:cuisines' %}">
+                            <i class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
+                                    <g>
+                                    <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                    </g>
+                                </svg>
+                            </i>
+                            <i class="sidenav-mini-icon">CS </i>
+                            <span class="item-name">Cuisines</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="{% url 'dishes:dish_categories' %}">
+                            <i class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
+                                    <g>
+                                    <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                    </g>
+                                </svg>
+                            </i>
+                            <i class="sidenav-mini-icon">DC </i>
+                            <span class="item-name">Dish Categories</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="{% url 'dishes:dishes' %}">
+                            <i class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
+                                    <g>
+                                    <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                    </g>
+                                </svg>
+                            </i>
+                            <i class="sidenav-mini-icon">DS </i>
+                            <span class="item-name">Dishes</span>
+                        </a>
+                    </li>
+
+                    
+                     
+                </ul>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="collapse" href="#shops" role="button" aria-expanded="false" aria-controls="shops">
+                    <i class="icon">
+                        <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> 
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M8.53162 2.93677C10.7165 1.66727 13.402 1.68946 15.5664 2.99489C17.7095 4.32691 19.012 6.70418 18.9998 9.26144C18.95 11.8019 17.5533 14.19 15.8075 16.0361C14.7998 17.1064 13.6726 18.0528 12.4488 18.856C12.3228 18.9289 12.1848 18.9777 12.0415 19C11.9036 18.9941 11.7693 18.9534 11.6508 18.8814C9.78243 17.6746 8.14334 16.134 6.81233 14.334C5.69859 12.8314 5.06584 11.016 5 9.13442C4.99856 6.57225 6.34677 4.20627 8.53162 2.93677ZM9.79416 10.1948C10.1617 11.1008 11.0292 11.6918 11.9916 11.6918C12.6221 11.6964 13.2282 11.4438 13.6748 10.9905C14.1214 10.5371 14.3715 9.92064 14.3692 9.27838C14.3726 8.29804 13.7955 7.41231 12.9073 7.03477C12.0191 6.65723 10.995 6.86235 10.3133 7.55435C9.63159 8.24635 9.42664 9.28872 9.79416 10.1948Z" fill="currentColor"></path>
+                            <ellipse opacity="0.4" cx="12" cy="21" rx="5" ry="1" fill="currentColor"></ellipse> 
+                                                       </svg>                                                       
+                    </i>
+                    <span class="item-name">Shop</span>
+                    <i class="right-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </i>
+                </a>
+                <ul class="sub-nav collapse" id="shops" data-bs-parent="#sidebar">
+                    <li class="nav-item">
+                        <a class="nav-link " href="{% url 'dashboard:shop_dishes' %}">
+                            <i class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
+                                    <g>
+                                    <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                    </g>
+                                </svg>
+                            </i>
+                            <i class="sidenav-mini-icon">DI</i>
+                            <span class="item-name">Dishes</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="{% url 'dashboard:shop_facilities' %}">
+                            <i class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
+                                    <g>
+                                    <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                    </g>
+                                </svg>
+                            </i>
+                            <i class="sidenav-mini-icon">FA</i>
+                            <span class="item-name">Facilities</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="{% url 'dashboard:precautions' %}">
+                            <i class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
+                                    <g>
+                                    <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                    </g>
+                                </svg>
+                            </i>
+                            <i class="sidenav-mini-icon">PR</i>
+                            <span class="item-name">Precautions</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="{% url 'dashboard:delivery_partners' %}">
+                            <i class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
+                                    <g>
+                                    <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                    </g>
+                                </svg>
+                            </i>
+                            <i class="sidenav-mini-icon">DP</i>
+                            <span class="item-name">Delivery</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="collapse" href="#offer" role="button" aria-expanded="false" aria-controls="offer">
+                    <i class="icon">
+                        <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path opacity="0.4" d="M11.7761 21.8374C9.49311 20.4273 7.37081 18.7645 5.44807 16.8796C4.09069 15.5338 3.05404 13.8905 2.41735 12.0753C1.27971 8.53523 2.60399 4.48948 6.30129 3.2884C8.2528 2.67553 10.3752 3.05175 12.0072 4.29983C13.6398 3.05315 15.7616 2.67705 17.7132 3.2884C21.4105 4.48948 22.7436 8.53523 21.606 12.0753C20.9745 13.8888 19.944 15.5319 18.5931 16.8796C16.6686 18.7625 14.5465 20.4251 12.265 21.8374L12.0161 22L11.7761 21.8374Z" fill="currentColor"></path>
+                            <path d="M12.0109 22.0001L11.776 21.8375C9.49013 20.4275 7.36487 18.7648 5.43902 16.8797C4.0752 15.5357 3.03238 13.8923 2.39052 12.0754C1.26177 8.53532 2.58605 4.48957 6.28335 3.28849C8.23486 2.67562 10.3853 3.05213 12.0109 4.31067V22.0001Z" fill="currentColor"></path>  
+                            <path d="M18.2304 9.99922C18.0296 9.98629 17.8425 9.8859 17.7131 9.72157C17.5836 9.55723 17.5232 9.3434 17.5459 9.13016C17.5677 8.4278 17.168 7.78851 16.5517 7.53977C16.1609 7.43309 15.9243 7.00987 16.022 6.59249C16.1148 6.18182 16.4993 5.92647 16.8858 6.0189C16.9346 6.027 16.9816 6.04468 17.0244 6.07105C18.2601 6.54658 19.0601 7.82641 18.9965 9.22576C18.9944 9.43785 18.9117 9.63998 18.7673 9.78581C18.6229 9.93164 18.4291 10.0087 18.2304 9.99922Z" fill="currentColor"></path>
+                        </svg>                            
+                    </i>
+                    <span class="item-name">Offers</span>
+                    <i class="right-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </i>
+                </a>
+                <ul class="sub-nav collapse" id="offer" data-bs-parent="#sidebar">
+                    <li class="nav-item">
+                        <a class="nav-link " href="{% url 'dashboard:shop_offers' %}">
+                            <i class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
+                                    <g>
+                                    <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                    </g>
+                                </svg>
+                            </i>
+                            <i class="sidenav-mini-icon">SO</i>
+                            <span class="item-name">Shop Offer</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="{% url 'dashboard:dish_offers' %}">
+                            <i class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
+                                    <g>
+                                    <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                    </g>
+                                </svg>
+                            </i>
+                            <i class="sidenav-mini-icon">DO</i>
+                            <span class="item-name">Dish Offers</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="{% url 'dashboard:more_offers' %}">
+                            <i class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
+                                    <g>
+                                    <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                    </g>
+                                </svg>
+                            </i>
+                            <i class="sidenav-mini-icon">MO</i>
+                            <span class="item-name">More Offers</span>
+                        </a>
+                    </li>
+                    
+                     
+                </ul>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="collapse" href="#rating" role="button" aria-expanded="false" aria-controls="rating">
+                    <i class="icon">
+                        <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path opacity="0.4" d="M12.9763 3.11361L15.2028 7.58789C15.3668 7.91205 15.6799 8.13717 16.041 8.18719L21.042 8.91556C21.3341 8.95658 21.5992 9.11066 21.7782 9.34578C21.9552 9.5779 22.0312 9.87205 21.9882 10.1612C21.9532 10.4013 21.8402 10.6234 21.6672 10.7935L18.0434 14.3063C17.7783 14.5514 17.6583 14.9146 17.7223 15.2698L18.6145 20.2083C18.7095 20.8046 18.3144 21.3669 17.7223 21.48C17.4783 21.519 17.2282 21.478 17.0082 21.3659L12.5472 19.0417C12.2161 18.8746 11.8251 18.8746 11.494 19.0417L7.03303 21.3659C6.48491 21.657 5.80576 21.4589 5.5007 20.9187C5.38767 20.7036 5.34766 20.4584 5.38467 20.2193L6.27686 15.2798C6.34088 14.9256 6.21985 14.5604 5.95579 14.3153L2.33202 10.8045C1.90092 10.3883 1.88792 9.70296 2.30301 9.27175C2.31201 9.26274 2.32201 9.25274 2.33202 9.24273C2.50405 9.06764 2.7301 8.95658 2.97415 8.92757L7.97523 8.1982C8.33531 8.14717 8.64837 7.92406 8.81341 7.59789L10.9599 3.11361C11.1509 2.72942 11.547 2.4903 11.9771 2.5003H12.1111C12.4842 2.54533 12.8093 2.77644 12.9763 3.11361Z" fill="currentColor"></path>
+                            <path d="M11.992 18.9171C11.7983 18.9231 11.6096 18.9752 11.4399 19.0682L7.00072 21.3871C6.45756 21.6464 5.80756 21.4452 5.50303 20.9258C5.39021 20.7136 5.34927 20.4704 5.38721 20.2322L6.27384 15.3032C6.33375 14.9449 6.21394 14.5806 5.95334 14.3284L2.32794 10.8185C1.8976 10.3971 1.88961 9.70556 2.31096 9.27421C2.31695 9.26821 2.32195 9.2632 2.32794 9.2582C2.49967 9.08806 2.72133 8.97597 2.95996 8.94094L7.96523 8.20433C8.32767 8.1583 8.64219 7.93211 8.80194 7.60384L10.9776 3.06312C11.1843 2.69682 11.5806 2.47864 12 2.50166C11.992 2.7989 11.992 18.715 11.992 18.9171Z" fill="currentColor"></path> 
+                        </svg>                                                                                
+                    </i>
+                    <span class="item-name">Reviews</span>
+                    <i class="right-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </i>
+                </a>
+                <ul class="sub-nav collapse" id="rating" data-bs-parent="#sidebar">
+                    <li class="nav-item">
+                        <a class="nav-link " href="{% url 'dashboard:shop_reviews' %}">
+                            <i class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
+                                    <g>
+                                    <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                    </g>
+                                </svg>
+                            </i>
+                            <i class="sidenav-mini-icon">RE</i>
+                            <span class="item-name">Reviews</span>
+                        </a>
+                    </li>
+                     
+                </ul>
+            </li>
+            
+            
+            
+        </ul>
+        <!-- Sidebar Menu End -->        </div>
+</div>

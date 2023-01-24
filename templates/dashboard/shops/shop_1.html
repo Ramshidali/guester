@@ -1,0 +1,371 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block content %}
+    <!-- Page Content-->
+    <div class="page-content">
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="row">
+                            <div class="col">
+                                <h2 class="page-title">{{page_title}} </h2>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url 'app' %}">Dashboard</a></li>
+                                    <li class="breadcrumb-item"><a href="{% url 'shops:shops' %}">{{app_name}}</a></li>
+                                    <li class="breadcrumb-item active">{{page_title}} : <span class="text-dark font-weight-bold"> {{instance.name}}</span></li>
+                                </ol>
+                            </div><!--end col-->
+                            <div class="col-auto align-self-center">
+                                <a class="btn btn-outline-success btn-icon-text"   href="{% url 'shops:shop_create' %}" > New <i class="las la-plus"></i></a>
+                                {% if instance.is_updated == True %}
+                                <a class="btn btn-outline-success btn-icon-text"   href="{% url 'shops:shop_edit' pk=instance.pk %}" >Edit <i class="las la-pen btn-icon-append"></i></a>
+                                {% else %}
+                                <a class="btn btn-outline-success btn-icon-text"   href="{% url 'shops:shop_update' pk=instance.pk %}" >Update <i class="las la-pen btn-icon-append"></i></a>
+                                {% endif %}
+                                <a class="action-button remove redirect btn btn-outline-danger btn-icon-text"
+                                data-id="{{instance.pk}}" data-text="{{confirm_delete_message}}" data-title="Are you sure?" href="{% url 'shops:shop_delete' pk=instance.pk %}">Delete <i class="las la-trash btn-icon-append"></i></a>
+                            </div><!--end col-->  
+                        </div><!--end row-->                                                              
+                    </div><!--end page-title-box-->
+                </div><!--end col-->
+            </div><!--end row-->
+            <div class="row">
+                <div class="card">
+                    
+                    <div class="card-body">
+                       <ul class="nav nav-tabs" id="myTab-two" role="tablist">
+                          <li class="nav-item">
+                             <a class="nav-link active text-primary" id="home-tab-two" data-bs-toggle="tab" href="#home-two" role="tab" aria-controls="home" aria-selected="true">Basic Info</a>
+                          </li>
+                          <li class="nav-item">
+                             <a class="nav-link text-primary" id="profile-tab-two" data-bs-toggle="tab" href="#profile-two" role="tab" aria-controls="profile" aria-selected="false">Other Info</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link text-primary" id="profile-tab-three" data-bs-toggle="tab" href="#menu" role="tab" aria-controls="profile" aria-selected="false">Menu</a>
+                         </li>
+                         <li class="nav-item">
+                            <a class="nav-link text-primary" id="profile-tab-four" data-bs-toggle="tab" href="#gallery" role="tab" aria-controls="profile" aria-selected="false">Shop Gallery</a>
+                         </li>
+                          
+                       </ul>
+                        <div class="tab-content" id="myTabContent-1">
+                            <div class="tab-pane fade show active" id="home-two" role="tabpanel" aria-labelledby="home-tab-two">
+                            <div class="card-body card card-padding">
+                                <div class="row">
+                                                        
+                                    <div class="col-sm-12 d-flex align-items-center  justify-content-between">  
+                                        <div class="col-sm-6"> 
+                                            <h6 class="text-dark ">Name : </h6>
+                                            <p class="item-text mb-0 ">{{instance.name}}
+                                                {% if instance.is_verified == True %}
+                                                <img src="{% static 'dashboard/images/tick.svg' %}" alt="Verified">
+                                                {% endif %}
+                                            </p>
+                                        </div>  
+                                        <div class="right w-50">
+                                            {% if instance.logo %}
+                                            <img src="{{instance.logo.url}}" alt="" width="100">
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    
+                                    {% if instance.is_rejected == True %}
+                                    <div class="col-sm-6">    
+                                        <h6 class="text-danger ">Rejected Reason: </h6>
+                                        <p class="item-text text-danger">{{instance.rejected_reason}}</p>
+                                    </div>  
+                                    {% endif %}
+                                    <div class="col-sm-6"> 
+                                        <h6 class="text-dark ">Phone : </h6>
+                                        <p class="item-text">{{instance.phone}}</p>
+                                    </div>
+                                    <div class="col-sm-6">    
+                                        <h6 class="text-dark ">Email : </h6>
+                                        <p class="item-text">{{instance.email}}</p>
+                                    </div>                                
+                                    <div class="col-sm-6">    
+                                        <h6 class="text-dark ">Website : </h6>
+                                        <p class="item-text">{{instance.website_link}}</p>
+                                    </div>
+                                    <div class="col-sm-6">    
+                                        <h6 class="text-dark ">Location : </h6>
+                                        <a href="{{instance.location}}" target="_blank" class="item-text text-link">{{instance.location}}</a>
+                                    </div>
+                                    <div class="col-sm-6">    
+                                        <h6 class="text-dark ">Brand : </h6>
+                                        <p class="item-text">{{instance.brand}}</p>
+                                    </div>
+                                    <div class="col-sm-6">    
+                                        <h6 class="text-dark ">Badge : </h6>
+                                        <p class="item-text">{{instance.badge}}</p>
+                                    </div>
+                                    <div class="col-sm-6">    
+                                        <h6 class="text-dark ">Shop Type : </h6>
+                                        <p class="item-text">{{instance.shop_type}}</p>
+                                    </div>
+                                    <div class="col-sm-6">    
+                                        <h6 class="text-dark ">Average Cost  : </h6>
+                                        <p class="item-text">{{instance.average_cost_for_two}}</p>
+                                    </div>
+                                    <div class="col-sm-6">    
+                                        <h6 class="text-dark ">Owner Name : </h6>
+                                        <p class="item-text">{{instance.owner_name}}</p>
+                                    </div>
+                                    <div class="col-sm-6"> 
+                                        <h6 class="text-dark ">Contact Number : </h6>
+                                        <p class="item-text">{{instance.contact_number}}</p>
+                                    </div>
+                                    <div class="col-sm-6">    
+                                        <h6 class="text-dark ">Manager Name: </h6>
+                                        <p class="item-text">{{instance.manager_name}}</p>
+                                    </div>      
+                                    <div class="col-sm-6">    
+                                        <h6 class="text-dark ">Guester Assured : </h6>
+                                        {% if instance.is_guester_assured == True %}
+                                        <p class="item-text text-success">{{instance.is_guester_assured}}</p>
+                                        {% else %}
+                                        <p class="item-text text-danger">{{instance.is_guester_assured}}</p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            {% if facilities %}
+                            <div class="card-body card card-padding">
+                                <div class="row">
+                                    <div class="card-body">
+                                        <h5 class="text-primary mb-2">Facilities</h5>
+                                        <div class="card-body card card-padding">
+                                            <div class="row">
+                                                
+                                                {% for item in facilities %}
+                                                <div class="col-sm-3">
+                                                    <p>{{forloop.counter}}.&nbsp; <span class="text-dark">{{item.title}}</span> </p>
+                                                </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div> 
+                                </div>
+                            </div>
+                            {% endif %}
+                            </div>
+                            <div class="tab-pane fade" id="profile-two" role="tabpanel" aria-labelledby="profile-tab-two">
+                                <div class="card-body card card-padding">
+                                    <div class="row">
+                                        <div class="d-flex align-items-center  justify-content-between mb-5">
+                                            <h6 class="text-primary">Shop Working Days</h6>
+                                            <div class="d-flex align-items-center  justify-content-center">
+                                                <button type="button" class="btn btn-secondary mt-2" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg">Update</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="card-body card card-padding">
+                                    <div class="row">
+                                        <div class="d-flex align-items-center  justify-content-first  mb-5">
+                                            <h6 class="text-primary mr-2">Shop Delivery Partners</h6>
+                                            <a class="btn btn-outline-primary btn-sm btn-icon-text"   href="{% url 'shops:shop_create' %}" > Add <i class="las la-plus"></i></a>
+                                                
+                                        </div>
+                                        {% if  delivery_partners %}
+                                        <div class="row">
+                                            <div class="card-body table-responsive">
+                                                <div class="">
+                                                    <table id="datatable" class="table table-striped" >
+                                                        <thead>
+                                                        <tr>
+                                                            <th>SL No</th>
+                                                            <th>Delivery Partner</th>
+                                                            <th>Partner Link</th>
+                                                            <th class="action">Action</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        {% load el_pagination_tags %}
+                                                        {% paginate 10 delivery_partners %}
+                                                        {% for instance in delivery_partners %}
+                                                        <tr>
+                                                            <td>{{forloop.counter}}</td>
+                                                            <td> <h6>{{instance.delivery_partner}}</h6></td>
+                                                            <td><a href="{{instance.shop_link}}" class="text-link" target="_blank">{{instance.shop_link|truncatechars:50}}</a></td>
+                                                            <td>
+                                                                <div class="d-flex align-items-center  justify-content-center">
+                                                                    <a href="{% url 'shops:delivery_partner_edit' pk=instance.pk %}" class="mr-2 btn btn-sm btn-icon btn-success"><i class="las la-pencil-alt"></i></a>
+                                                                    <a href="{% url 'shops:delivery_partner' pk=instance.pk %}" class="mr-2 btn btn-sm btn-icon btn-success"><i class="las la-eye"></i></a>
+                                                                    <a class="action-button remove redirect  btn btn-sm btn-icon btn-success"
+                                                                        data-id="{{instance.pk}}" data-text="{{confirm_delete_message}}" data-title="Are you sure?" href="{% url 'shops:delivery_partner_delete' pk=instance.pk %}"><i class="las la-trash-alt"></i></a>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        {% endfor %}
+            
+                                                        </tbody>
+                                                    </table> 
+                                                    
+                                                    {% if delivery_partners %}
+                                                    {% get_pages %}
+                                                        <div class="row">
+                                                            <div class="col-lg-12 bottom-content" id="content-pagination">
+                                                                <div class="left">
+                                                                    <h6>Showing {{title}}
+                                                                    <span class="current_page_index">{{ pages.current_start_index }}</span> - <span
+                                                                    class="current_end_status">{{ pages.current_end_index }}</span> of <span
+                                                                    class="total_count">{{ pages.total_count }}</span>
+                                                                    </h6>
+                                                                </div>
+                                                                <div class="right">
+                                                                    <div class="col-sm-12 col-xs-12 my-pagination">{% show_pages %}</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    {% endif %}
+                                                    
+                                                </div>
+                                                
+                                            </div>
+                                            <!-- end col  -->
+                                        </div> 
+            
+                                        {% else %}
+                                            <div class="col-lg-12">
+                                                <div class="card">
+                                                    <div class="card-body">  
+                                                        <div class="text-center">
+                                                            <img class="mb-3 rounded-circle" width="300px;" src="{% static 'dashboard/images/nothing_found.jpg' %}" alt="" /> 
+                                                            <br />                                     
+                                                            <a  href="{% url 'shops:delivery_partner_create' pk=instance.pk %}" class="btn btn-outline-success btn-icon-text">Create {{page.title}}</a>
+                                                        </div>
+                                                    </div><!--end card-body-->
+                                                </div><!--end card-->
+                                            </div><!--end col-->  
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="tab-pane fade" id="menu" role="tabpanel" aria-labelledby="profile-tab-three">
+                                <div class="card-body card card-padding">
+                                    <div class="row">
+                                        <div class="d-flex align-items-center  justify-content-first  mb-5">
+                                            <h6 class="text-primary mr-2">Shop Menu</h6>
+                                            <a class="btn btn-outline-primary btn-sm btn-icon-text"   href="{% url 'shops:shop_dish_create' pk=instance.pk %}" > Add <i class="las la-plus"></i></a>
+                                                
+                                        </div>
+                                        {% if  dishes %}
+                                        <div class="row">
+                                            <div class="card-body table-responsive">
+                                                <div class="">
+                                                    <table id="datatable" class="table table-striped" >
+                                                        <thead>
+                                                        <tr>
+                                                            <th>SL No</th>
+                                                            <th>Dish</th>
+                                                            <th>Price</th>
+                                                            <th class="action">Action</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        {% load el_pagination_tags %}
+                                                        {% paginate 10 dishes %}
+                                                        {% for instance in dishes %}
+                                                        <tr>
+                                                            <td>{{forloop.counter}}</td>
+                                                            <td> <h6>{{instance.dish}}</h6></td>
+                                                            <td> <p>{{instance.price}}</p></td>
+                                                            <td>
+                                                                <div class="d-flex align-items-center  justify-content-center">
+                                                                    <a href="{% url 'shops:shop_dish_edit' pk=instance.pk %}" class="mr-2 btn btn-sm btn-icon btn-success"><i class="las la-pencil-alt"></i></a>
+                                                                    <a href="{% url 'shops:shop_dish' pk=instance.pk %}" class="mr-2 btn btn-sm btn-icon btn-success"><i class="las la-eye"></i></a>
+                                                                    <a class="action-button remove redirect  btn btn-sm btn-icon btn-success"
+                                                                        data-id="{{instance.pk}}" data-text="{{confirm_delete_message}}" data-title="Are you sure?" href="{% url 'shops:shop_dish_delete' pk=instance.pk %}"><i class="las la-trash-alt"></i></a>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        {% endfor %}
+            
+                                                        </tbody>
+                                                    </table> 
+                                                    
+                                                    {% if dishes %}
+                                                    {% get_pages %}
+                                                        <div class="row">
+                                                            <div class="col-lg-12 bottom-content" id="content-pagination">
+                                                                <div class="left">
+                                                                    <h6>Showing {{title}}
+                                                                    <span class="current_page_index">{{ pages.current_start_index }}</span> - <span
+                                                                    class="current_end_status">{{ pages.current_end_index }}</span> of <span
+                                                                    class="total_count">{{ pages.total_count }}</span>
+                                                                    </h6>
+                                                                </div>
+                                                                <div class="right">
+                                                                    <div class="col-sm-12 col-xs-12 my-pagination">{% show_pages %}</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    {% endif %}
+                                                    
+                                                </div>
+                                                
+                                            </div>
+                                            <!-- end col  -->
+                                        </div> 
+            
+                                        {% else %}
+                                            <div class="col-lg-12">
+                                                <div class="card">
+                                                    <div class="card-body">  
+                                                        <div class="text-center">
+                                                            <img class="mb-3 rounded-circle" width="300px;" src="{% static 'dashboard/images/nothing_found.jpg' %}" alt="" /> 
+                                                            <br />                                     
+                                                            <a  href="{% url 'shops:shop_dish_create' pk=instance.pk %}" class="btn btn-outline-success btn-icon-text">Create {{page.title}}</a>
+                                                        </div>
+                                                    </div><!--end card-body-->
+                                                </div><!--end card-->
+                                            </div><!--end col-->  
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="gallery" role="tabpanel" aria-labelledby="profile-tab-four">
+                                
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"  aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                   <div class="modal-content">
+                      <div class="modal-header">
+                         <h5 class="modal-title">Select Working Days</h5>
+                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                         </button>
+                      </div>
+                      <div class="modal-body">
+                         <p>Modal body text goes here.</p>
+                      </div>
+                      <div class="modal-footer">
+                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                         <button type="button" class="btn btn-primary">Save changes</button>
+                      </div>
+                   </div>
+                </div>
+            </div> 
+
+
+        </div> <!-- end row -->
+
+
+    </div><!-- container -->
+    <!-- end page content -->
+{% endblock content %}
+{% block static %}
+<style>
+    
+    
+</style>
+{% endblock %}

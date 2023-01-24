@@ -1,0 +1,180 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <!-- Page Content-->
+    <div class="page-content">
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="row">
+                            <div class="col">
+                                <h4 class="page-title">{{page_title}}</h4>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url 'app' %}">Dashboard</a></li>
+                                    <li class="breadcrumb-item active">{{app_name}}</li>
+                                    <li class="breadcrumb-item active">{{page_title}}</li>
+                                </ol>
+                            </div><!--end col-->
+                        </div><!--end row-->                                                              
+                    </div><!--end page-title-box-->
+                </div><!--end col-->
+            </div><!--end row-->
+            <!-- end page title end breadcrumb -->
+            
+            <div class="row">
+                <div class="card-body">
+                    
+                       <form class="ajax redirect" enctype="multipart/form-data" method="post" action="{{url}}">
+                            {% csrf_token %}
+                            <h3>Shop Admin Info</h3>
+                            <div class="card-body card card-padding">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <div class="form-group fg-line">
+                                            <label for="{{ form.username.id_for_label }}">
+                                                {{ form.username.label }}
+                                                {% if form.username.field.required %}
+                                                <small class="star">*</small>
+                                                {% endif %}
+    
+                                                {% if form.username.help_text %}
+                                                <span data-original-title="Field Info" title=""
+                                                    data-content="{{ form.username.help_text }}" data-placement="left"
+                                                    data-toggle="popover" data-trigger="hover"
+                                                    class="help-text-icon zmdi zmdi-info-outline"></span>
+                                                {% endif %}
+                                            </label>
+                                            {{ form.username }}
+    
+                                            {% if form.username.errors %}
+                                            <label class="error">{{ form.username.errors.as_text }}</label>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+    
+                                    <div class="col-sm-3">
+    
+                                        <div class="form-group fg-line">
+                                            <label for="{{ form.email.id_for_label }}">
+                                                {{ form.email.label }}
+                                                {% if form.email.field.required %}
+                                                <small class="star">*</small>
+                                                {% endif %}
+    
+                                                {% if form.email.help_text %}
+                                                <span data-original-title="Field Info" title=""
+                                                    data-content="{{ form.email.help_text }}" data-placement="left"
+                                                    data-toggle="popover" data-trigger="hover"
+                                                    class="help-text-icon zmdi zmdi-info-outline"></span>
+                                                {% endif %}
+                                            </label>
+                                            {{ form.email }}
+    
+                                            {% if form.email.errors %}
+                                            <label class="error">{{ form.email.errors.as_text }}</label>
+                                            {% endif %}
+                                        </div>
+                                        <br>
+                                    </div>
+    
+                                    <div class="col-sm-3">
+    
+                                        <div class="form-group fg-line">
+                                            <label for="{{ form.password1.id_for_label }}">
+                                                {{ form.password1.label }}
+                                                {% if form.password1.field.required %}
+                                                <small class="star">*</small>
+                                                {% endif %}
+    
+                                                {% if form.password1.help_text %}
+                                                <span data-original-title="Field Info" title=""
+                                                    data-content="{{ form.password1.help_text }}" data-placement="left"
+                                                    data-toggle="popover" data-trigger="hover"
+                                                    class="help-text-icon zmdi zmdi-info-outline"></span>
+                                                {% endif %}
+                                            </label>
+                                            {{ form.password1 }}
+    
+                                            {% if form.password1.errors %}
+                                            <label class="error">{{ form.password1.errors.as_text }}</label>
+                                            {% endif %}
+                                        </div>
+                                        <br>
+                                    </div>
+    
+                                    <div class="col-sm-3">
+    
+                                        <div class="form-group fg-line">
+                                            <label for="{{ form.password2.id_for_label }}">
+                                                {{ form.password2.label }}
+                                                {% if form.password2.field.required %}
+                                                <small class="star">*</small>
+                                                {% endif %}
+    
+                                                {% if form.password2.help_text %}
+                                                <span data-original-title="Field Info" title=""
+                                                    data-content="{{ form.password2.help_text }}" data-placement="left"
+                                                    data-toggle="popover" data-trigger="hover"
+                                                    class="help-text-icon zmdi zmdi-info-outline"></span>
+                                                {% endif %}
+                                            </label>
+                                            {{ form.password2 }}
+    
+                                            {% if form.password2.errors %}
+                                            <label class="error">{{ form.password2.errors.as_text }}</label>
+                                            {% endif %}
+                                        </div>
+                                        <br>
+                                    </div>
+    
+    
+                                </div>
+                            </div>
+    
+    
+                            <div>
+                                <button type="submit" class="btn btn-primary waves-effect">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+    
+                    </form>
+                </div>
+            </div> 
+                <!-- end row -->
+        </div><!-- container -->
+    </div>
+
+
+    
+    <!-- end page content -->
+{% endblock content %}
+{% block static %}
+    {% load static %}
+    {{form.media}}
+    <style>
+        .select2-container--default{
+            width: 100%;
+        }
+        .select2-container .select2-selection--single {
+            height: calc(2.5em + .1rem + 1px);
+        }
+        .select2-container--default .select2-selection--single {
+            border: 1px solid #e3ebf6;
+        }
+        .select2-container--default .select2-results__option--highlighted[aria-selected] {
+            color: #4d65d9;
+        }
+
+        .dynamic-formset-add td{
+            text-align: center !important;
+        }
+        input[type=number]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+          }
+    </style>
+{% endblock  %}

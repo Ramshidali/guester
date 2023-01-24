@@ -1,0 +1,1412 @@
+[  
+
+  {
+    "model": "users.Permission",
+    "pk": 1,
+    "fields": {
+      "name": "Manage Brand",
+      "code": "can_manage_brand",
+      "app": "brands"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 2,
+    "fields": {
+      "name": "Create Brand",
+      "code": "can_create_brand",
+      "app": "brands"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 3,
+    "fields": {
+      "name": "Modify Brand",
+      "code": "can_modify_brand",
+      "app": "brands"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 4,
+    "fields": {
+      "name": "View Brand",
+      "code": "can_view_brand",
+      "app": "brands"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 5,
+    "fields": {
+      "name": "Delete Brand",
+      "code": "can_delete_brand",
+      "app": "brands"
+    }
+  },
+
+  {
+    "model": "users.Permission",
+    "pk": 6,
+    "fields": {
+      "name": "Manage Facility",
+      "code": "can_manage_facility",
+      "app": "general"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 7,
+    "fields": {
+      "name": "Create Facility",
+      "code": "can_create_facility",
+      "app": "general"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 8,
+    "fields": {
+      "name": "Modify Facility",
+      "code": "can_modify_facility",
+      "app": "general"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 9,
+    "fields": {
+      "name": "View Facility",
+      "code": "can_view_facility",
+      "app": "general"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 10,
+    "fields": {
+      "name": "Delete Facility",
+      "code": "can_delete_facility",
+      "app": "general"
+    }
+  },
+
+  {
+    "model": "users.Permission",
+    "pk": 11,
+    "fields": {
+      "name": "Manage Cuisine",
+      "code": "can_manage_cuisine",
+      "app": "dishes"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 12,
+    "fields": {
+      "name": "Create Cuisine",
+      "code": "can_create_cuisine",
+      "app": "dishes"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 13,
+    "fields": {
+      "name": "Modify Cuisine",
+      "code": "can_modify_cuisine",
+      "app": "dishes"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 14,
+    "fields": {
+      "name": "View Cuisine",
+      "code": "can_view_cuisine",
+      "app": "dishes"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 15,
+    "fields": {
+      "name": "Delete Cuisine",
+      "code": "can_delete_cuisine",
+      "app": "dishes"
+    }
+  },
+
+  {
+    "model": "users.Permission",
+    "pk": 16,
+    "fields": {
+      "name": "Manage Dish",
+      "code": "can_manage_dish",
+      "app": "dishes"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 17,
+    "fields": {
+      "name": "Create Dish",
+      "code": "can_create_dish",
+      "app": "dishes"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 18,
+    "fields": {
+      "name": "Modify Dish",
+      "code": "can_modify_dish",
+      "app": "dishes"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 19,
+    "fields": {
+      "name": "View Dish",
+      "code": "can_view_dish",
+      "app": "dishes"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 20,
+    "fields": {
+      "name": "Delete Dish",
+      "code": "can_delete_dish",
+      "app": "dishes"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 21,
+    "fields": {
+      "name": "Manage Dish Category",
+      "code": "can_manage_dish_category",
+      "app": "dishes"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 22,
+    "fields": {
+      "name": "Create Dish Category",
+      "code": "can_create_dish_category",
+      "app": "dishes"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 23,
+    "fields": {
+      "name": "Modify Dish Category",
+      "code": "can_modify_dish_category",
+      "app": "dishes"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 24,
+    "fields": {
+      "name": "View Dish Category",
+      "code": "can_view_dish_category",
+      "app": "dishes"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 25,
+    "fields": {
+      "name": "Delete Dish Category",
+      "code": "can_delete_dish_category",
+      "app": "dishes"
+    }
+  },
+
+  {
+    "model": "users.Permission",
+    "pk": 26,
+    "fields": {
+      "name": "Manage Dish Image",
+      "code": "can_manage_dish_image",
+      "app": "dishes"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 27,
+    "fields": {
+      "name": "Create Dish Image",
+      "code": "can_create_dish_image",
+      "app": "dishes"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 28,
+    "fields": {
+      "name": "Modify Dish Image",
+      "code": "can_modify_dish_image",
+      "app": "dishes"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 29,
+    "fields": {
+      "name": "View Dish Image",
+      "code": "can_view_dish_image",
+      "app": "dishes"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 30,
+    "fields": {
+      "name": "Delete Dish Image",
+      "code": "can_delete_dish_image",
+      "app": "dishes"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 31,
+    "fields": {
+      "name": "Manage Days",
+      "code": "can_manage_days",
+      "app": "general"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 32,
+    "fields": {
+      "name": "Create Days",
+      "code": "can_create_days",
+      "app": "general"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 33,
+    "fields": {
+      "name": "Modify Days",
+      "code": "can_modify_days",
+      "app": "general"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 34,
+    "fields": {
+      "name": "View Days",
+      "code": "can_view_days",
+      "app": "general"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 35,
+    "fields": {
+      "name": "Delete Days",
+      "code": "can_delete_days",
+      "app": "general"
+    }
+  },
+
+  {
+    "model": "users.Permission",
+    "pk": 36,
+    "fields": {
+      "name": "Manage Delivery Partner",
+      "code": "can_manage_delivery_partner",
+      "app": "general"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 37,
+    "fields": {
+      "name": "Create Delivery Partner",
+      "code": "can_create_delivery_partner",
+      "app": "general"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 38,
+    "fields": {
+      "name": "Modify Delivery Partner",
+      "code": "can_modify_delivery_partner",
+      "app": "general"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 39,
+    "fields": {
+      "name": "View Delivery Partner",
+      "code": "can_view_delivery_partner",
+      "app": "general"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 40,
+    "fields": {
+      "name": "Delete Delivery Partner",
+      "code": "can_delete_delivery_partner",
+      "app": "general"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 41,
+    "fields": {
+      "name": "Manage Location",
+      "code": "can_manage_location",
+      "app": "general"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 42,
+    "fields": {
+      "name": "Create Location",
+      "code": "can_create_location",
+      "app": "general"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 43,
+    "fields": {
+      "name": "Modify Location",
+      "code": "can_modify_location",
+      "app": "general"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 44,
+    "fields": {
+      "name": "View Location",
+      "code": "can_view_location",
+      "app": "general"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 45,
+    "fields": {
+      "name": "Delete Location",
+      "code": "can_delete_location",
+      "app": "general"
+    }
+  },
+
+  {
+    "model": "users.Permission",
+    "pk": 46,
+    "fields": {
+      "name": "Manage Brand Offer",
+      "code": "can_manage_brand_offer",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 47,
+    "fields": {
+      "name": "Create Brand Offer",
+      "code": "can_create_brand_offer",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 48,
+    "fields": {
+      "name": "Modify Brand Offer",
+      "code": "can_modify_brand_offer",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 49,
+    "fields": {
+      "name": "View Brand Offer",
+      "code": "can_view_brand_offer",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 50,
+    "fields": {
+      "name": "Delete Brand Offer",
+      "code": "can_delete_brand_offer",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 51,
+    "fields": {
+      "name": "Manage Dish offer",
+      "code": "can_manage_dish_offer",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 52,
+    "fields": {
+      "name": "Create Dish offer",
+      "code": "can_create_dish_offer",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 53,
+    "fields": {
+      "name": "Modify Dish offer",
+      "code": "can_modify_dish_offer",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 54,
+    "fields": {
+      "name": "View Dish offer",
+      "code": "can_view_dish_offer",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 55,
+    "fields": {
+      "name": "Delete Dish offer",
+      "code": "can_delete_dish_offer",
+      "app": "shops"
+    }
+  },
+
+  {
+    "model": "users.Permission",
+    "pk": 56,
+    "fields": {
+      "name": "Manage Shop Offer",
+      "code": "can_manage_shop_offer",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 57,
+    "fields": {
+      "name": "Create Shop Offer",
+      "code": "can_create_shop_offer",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 58,
+    "fields": {
+      "name": "Modify Shop Offer",
+      "code": "can_modify_shop_offer",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 59,
+    "fields": {
+      "name": "View Shop Offer",
+      "code": "can_view_shop_offer",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 60,
+    "fields": {
+      "name": "Delete Shop Offer",
+      "code": "can_delete_shop_offer",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 61,
+    "fields": {
+      "name": "Manage More offer",
+      "code": "can_manage_more_offer",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 62,
+    "fields": {
+      "name": "Create More offer",
+      "code": "can_create_more_offer",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 63,
+    "fields": {
+      "name": "Modify More offer",
+      "code": "can_modify_more_offer",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 64,
+    "fields": {
+      "name": "View More offer",
+      "code": "can_view_more_offer",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 65,
+    "fields": {
+      "name": "Delete More offer",
+      "code": "can_delete_more_offer",
+      "app": "shops"
+    }
+  },
+
+  {
+    "model": "users.Permission",
+    "pk": 66,
+    "fields": {
+      "name": "Manage Shop",
+      "code": "can_manage_shop",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 67,
+    "fields": {
+      "name": "Create Shop",
+      "code": "can_create_shop",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 68,
+    "fields": {
+      "name": "Modify Shop",
+      "code": "can_modify_shop",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 69,
+    "fields": {
+      "name": "View Shop",
+      "code": "can_view_shop",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 70,
+    "fields": {
+      "name": "Delete Shop",
+      "code": "can_delete_shop",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 71,
+    "fields": {
+      "name": "Manage Shop Type",
+      "code": "can_manage_shop_type",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 72,
+    "fields": {
+      "name": "Create Shop Type",
+      "code": "can_create_shop_type",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 73,
+    "fields": {
+      "name": "Modify Shop Type",
+      "code": "can_modify_shop_type",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 74,
+    "fields": {
+      "name": "View Shop Type",
+      "code": "can_view_shop_type",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 75,
+    "fields": {
+      "name": "Delete Shop Type",
+      "code": "can_delete_shop_type",
+      "app": "shops"
+    }
+  },
+
+  {
+    "model": "users.Permission",
+    "pk": 76,
+    "fields": {
+      "name": "Manage Shop Dish",
+      "code": "can_manage_shop_dish",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 77,
+    "fields": {
+      "name": "Create Shop Dish",
+      "code": "can_create_shop_dish",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 78,
+    "fields": {
+      "name": "Modify Shop Dish",
+      "code": "can_modify_shop_dish",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 79,
+    "fields": {
+      "name": "View Shop Dish",
+      "code": "can_view_shop_dish",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 80,
+    "fields": {
+      "name": "Delete Shop Dish",
+      "code": "can_delete_shop_dish",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 81,
+    "fields": {
+      "name": "Manage Shop Dish Image",
+      "code": "can_manage_shop_dish_image",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 82,
+    "fields": {
+      "name": "Create Shop Dish Image",
+      "code": "can_create_shop_dish_image",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 83,
+    "fields": {
+      "name": "Modify Shop Dish Image",
+      "code": "can_modify_shop_dish_image",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 84,
+    "fields": {
+      "name": "View Shop Dish Image",
+      "code": "can_view_shop_dish_image",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 85,
+    "fields": {
+      "name": "Delete Shop Dish Image",
+      "code": "can_delete_shop_dish_image",
+      "app": "shops"
+    }
+  },
+
+  {
+    "model": "users.Permission",
+    "pk": 86,
+    "fields": {
+      "name": "Manage Shop Gallery",
+      "code": "can_manage_shop_gallery",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 87,
+    "fields": {
+      "name": "Create Shop Gallery",
+      "code": "can_create_shop_gallery",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 88,
+    "fields": {
+      "name": "Modify Shop Gallery",
+      "code": "can_modify_shop_gallery",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 89,
+    "fields": {
+      "name": "View Shop Gallery",
+      "code": "can_view_shop_gallery",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 90,
+    "fields": {
+      "name": "Delete Shop Gallery",
+      "code": "can_delete_shop_gallery",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 91,
+    "fields": {
+      "name": "Manage Shop Gallery Type",
+      "code": "can_manage_gallery_type",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 92,
+    "fields": {
+      "name": "Create Shop Gallery Type",
+      "code": "can_create_gallery_type",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 93,
+    "fields": {
+      "name": "Modify Shop Gallery Type",
+      "code": "can_modify_gallery_type",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 94,
+    "fields": {
+      "name": "View Shop Gallery Type",
+      "code": "can_view_gallery_type",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 95,
+    "fields": {
+      "name": "Delete Shop Gallery Type",
+      "code": "can_delete_gallery_type",
+      "app": "shops"
+    }
+  },
+
+  {
+    "model": "users.Permission",
+    "pk": 96,
+    "fields": {
+      "name": "Manage Shop Safety",
+      "code": "can_manage_shop_Safety",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 97,
+    "fields": {
+      "name": "Create Shop Safety",
+      "code": "can_create_shop_Safety",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 98,
+    "fields": {
+      "name": "Modify Shop Safety",
+      "code": "can_modify_shop_Safety",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 99,
+    "fields": {
+      "name": "View Shop Safety",
+      "code": "can_view_shop_Safety",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 100,
+    "fields": {
+      "name": "Delete Shop Safety",
+      "code": "can_delete_shop_Safety",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 101,
+    "fields": {
+      "name": "Manage Shop Working Day",
+      "code": "can_manage_shop_working_day",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 102,
+    "fields": {
+      "name": "Create Shop Working Day",
+      "code": "can_create_shop_working_day",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 103,
+    "fields": {
+      "name": "Modify Shop Working Day",
+      "code": "can_modify_shop_working_day",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 104,
+    "fields": {
+      "name": "View Shop Working Day",
+      "code": "can_view_shop_working_day",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 105,
+    "fields": {
+      "name": "Delete Shop Working Day",
+      "code": "can_delete_shop_working_day",
+      "app": "shops"
+    }
+  },
+
+  {
+    "model": "users.Permission",
+    "pk": 106,
+    "fields": {
+      "name": "Manage Shop Safety",
+      "code": "can_manage_shop_safety",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 107,
+    "fields": {
+      "name": "Create Shop Safety",
+      "code": "can_create_shop_safety",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 108,
+    "fields": {
+      "name": "Modify Shop Safety",
+      "code": "can_modify_shop_safety",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 109,
+    "fields": {
+      "name": "View Shop Safety",
+      "code": "can_view_shop_safety",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 110,
+    "fields": {
+      "name": "Delete Shop Safety",
+      "code": "can_delete_shop_safety",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 111,
+    "fields": {
+      "name": "Manage Shop Delivery Partner",
+      "code": "can_manage_shop_delivery_partner",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 112,
+    "fields": {
+      "name": "Create Shop Delivery Partner",
+      "code": "can_create_shop_delivery_partner",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 113,
+    "fields": {
+      "name": "Modify Shop Delivery Partner",
+      "code": "can_modify_shop_delivery_partner",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 114,
+    "fields": {
+      "name": "View Shop Delivery Partner",
+      "code": "can_view_shop_delivery_partner",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 115,
+    "fields": {
+      "name": "Delete Shop Delivery Partner",
+      "code": "can_delete_shop_delivery_partner",
+      "app": "shops"
+    }
+  },
+
+  {
+    "model": "users.Permission",
+    "pk": 116,
+    "fields": {
+      "name": "Manage Staff",
+      "code": "can_manage_staff",
+      "app": "staffs"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 117,
+    "fields": {
+      "name": "Create Staff",
+      "code": "can_create_staff",
+      "app": "staffs"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 118,
+    "fields": {
+      "name": "Modify Staff",
+      "code": "can_modify_staff",
+      "app": "staffs"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 119,
+    "fields": {
+      "name": "View Staff",
+      "code": "can_view_staff",
+      "app": "staffs"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 120,
+    "fields": {
+      "name": "Delete Staff",
+      "code": "can_delete_staff",
+      "app": "staffs"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 121,
+    "fields": {
+      "name": "Manage Staff Designation",
+      "code": "can_manage_staff_designation",
+      "app": "staffs"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 122,
+    "fields": {
+      "name": "Create Staff Designation",
+      "code": "can_create_staff_designation",
+      "app": "staffs"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 123,
+    "fields": {
+      "name": "Modify Staff Designation",
+      "code": "can_modify_staff_designation",
+      "app": "staffs"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 124,
+    "fields": {
+      "name": "View Staff Designation",
+      "code": "can_view_staff_designation",
+      "app": "staffs"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 125,
+    "fields": {
+      "name": "Delete Staff Designation",
+      "code": "can_delete_staff_designation",
+      "app": "staffs"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 126,
+    "fields": {
+      "name": "Manage Badge",
+      "code": "can_manage_badge",
+      "app": "general"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 127,
+    "fields": {
+      "name": "Create Badge",
+      "code": "can_create_badge",
+      "app": "general"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 128,
+    "fields": {
+      "name": "Modify Badge",
+      "code": "can_modify_badge",
+      "app": "general"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 129,
+    "fields": {
+      "name": "View Badge",
+      "code": "can_view_badge",
+      "app": "general"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 130,
+    "fields": {
+      "name": "Delete Badge",
+      "code": "can_delete_badge",
+      "app": "general"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 131,
+    "fields": {
+      "name": "Set  Designation Permission",
+      "code": "can_set_permissions",
+      "app": "staffs"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 132,
+    "fields": {
+      "name": "Update Staff Permission",
+      "code": "can_update_permissions",
+      "app": "users"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 133,
+    "fields": {
+      "name": "Upload Shops",
+      "code": "can_upload_shops",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 134,
+    "fields": {
+      "name": "Verify Shop",
+      "code": "can_verify_shop",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 135,
+    "fields": {
+      "name": "Reject Shop",
+      "code": "can_reject_shop",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 136,
+    "fields": {
+      "name": "Change Staff Password",
+      "code": "can_update_password",
+      "app": "users"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 137,
+    "fields": {
+      "name": "Manage Shop Review",
+      "code": "can_manage_shop_review",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 138,
+    "fields": {
+      "name": "View Shop Review",
+      "code": "can_view_shop_review",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 139,
+    "fields": {
+      "name": "Delete Shop Review",
+      "code": "can_delete_shop_review",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 140,
+    "fields": {
+      "name": "Create Shop Admin",
+      "code": "can_create_shop_admin",
+      "app": "users"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 141,
+    "fields": {
+      "name": "Manage Zone",
+      "code": "can_manage_zone",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 142,
+    "fields": {
+      "name": "Create Zone",
+      "code": "can_create_zone",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 143,
+    "fields": {
+      "name": "Modify Zone",
+      "code": "can_modify_zone",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 144,
+    "fields": {
+      "name": "View Zone",
+      "code": "can_view_zone",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 145,
+    "fields": {
+      "name": "Delete Zone",
+      "code": "can_delete_zone",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 146,
+    "fields": {
+      "name": "Manage Sub Zone",
+      "code": "can_manage_sub_zone",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 147,
+    "fields": {
+      "name": "Create Sub Zone",
+      "code": "can_create_sub_zone",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 148,
+    "fields": {
+      "name": "Modify Sub Zone",
+      "code": "can_modify_sub_zone",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 149,
+    "fields": {
+      "name": "View Sub Zone",
+      "code": "can_view_sub_zone",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 150,
+    "fields": {
+      "name": "Delete Sub Zone",
+      "code": "can_delete_sub_zone",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 151,
+    "fields": {
+      "name": "Create Shop Facility",
+      "code": "can_create_shop_facility",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 152,
+    "fields": {
+      "name": "Modify Shop Facility",
+      "code": "can_modify_shop_facility",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 153,
+    "fields": {
+      "name": "Delete Shop Facility",
+      "code": "can_delete_shop_facility",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 154,
+    "fields": {
+      "name": "View Shop Facility",
+      "code": "can_view_shop_facility",
+      "app": "shops"
+    }
+  },
+  {
+    "model": "users.Permission",
+    "pk": 155,
+    "fields": {
+      "name": "Revoke Customer Facility",
+      "code": "can_revoke_customer",
+      "app": "shops"
+    }
+  }
+
+]

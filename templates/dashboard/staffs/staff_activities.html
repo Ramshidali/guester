@@ -1,0 +1,318 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <!-- Page Content-->
+    <div class="page-content">
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="row">
+                            <div class="col">
+                                <h4 class="page-title">{{title}}</h4>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url 'app' %}">Dashboard</a></li>
+                                    <li class="breadcrumb-item active">
+                                        <a href="{% url 'staffs:staffs' %}">{{app_name}}</a></li>
+                                    </li>
+                                    <li class="breadcrumb-item active">{{page_title}}</li>
+                                </ol>
+                            </div><!--end col-->
+                            <div class="col-auto col-sm-2 float-right ml-auto align-self-center">
+                                <form method="get" action="{% url 'staffs:activities' pk=pk %}">
+                                    <li class="list-inline-item">
+                                        <div class="input-group">
+                
+                                            <input name="q" type="text" placeholder="Search" value="{{ filter_data.q }}"
+                                                class="form-control" />
+                                            <span class="input-group-append">
+                                                <button type="submit" class="btn btn-soft-success btn-sm">
+                                                    <svg width="18" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <circle cx="11.7669" cy="11.7666" r="8.98856" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></circle>
+                                                        <path d="M18.0186 18.4851L21.5426 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                    </svg>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </li>
+                                </form>
+                            </div>
+                            <div class="col-auto align-self-center">
+                                <a  class="filter_button btn btn-outline-success btn-icon-text" style="cursor: pointer;" >
+                                    <i class="las la-filter"></i>
+                                    Filter
+                                </a>
+                            </div><!--end col--> 
+                        </div><!--end row-->                                                              
+                    </div><!--end page-title-box-->
+                </div><!--end col-->
+            </div><!--end row-->
+            <!-- end page title end breadcrumb -->
+            {% if instances %}
+            <div class="row">
+                <div class="card-body table-responsive">
+                    <div class="">
+                        <table id="datatable" class="table table-striped" >
+                            <thead>
+                            <tr>
+                                <th>SL No</th>
+                                <th>Title</th>
+                                <th>App</th>
+                                <th>Activity Type</th>
+                                <th>Item</th>
+                                <Th>Time</Th>
+                                <th class="action">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% load el_pagination_tags %}
+                            {% paginate 10 instances %}
+                            {% for instance in instances %}
+                            <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td> {{instance.title}}</td>
+                                <td> {{instance.app}}</td>
+                                <td> {{instance.activity_type}}</td>
+                                <td> {{instance.instance}}</td>
+                                <td> {{instance.time}}</td>
+                                <td>
+                                    <div class="d-flex align-items-center  justify-content-center">                                                       
+                                        <a href="{% url 'staffs:activity' pk=instance.pk %}" class="mr-2 btn btn-sm btn-icon btn-success"><i class="las la-eye"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+
+                            </tbody>
+                        </table> 
+                        
+                        {% if instances %}
+                        {% get_pages %}
+                            <div class="row">
+                                <div class="col-lg-12 bottom-content" id="content-pagination">
+                                    <div class="left">
+                                        <h6>Showing {{title}}
+                                        <span class="current_page_index">{{ pages.current_start_index }}</span> - <span
+                                        class="current_end_status">{{ pages.current_end_index }}</span> of <span
+                                        class="total_count">{{ pages.total_count }}</span>
+                                        </h6>
+                                    </div>
+                                    <div class="right">
+                                        <div class="col-sm-12 col-xs-12 my-pagination">{% show_pages %}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                        
+                    </div>
+                    
+                </div>
+                 <!-- end col  -->
+            </div> 
+
+            {% else %}
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">  
+                            <div class="text-center">
+                                <img class="mb-3 rounded-circle" width="500px;" src="{% static 'dashboard/images/nothing_found.jpg' %}" alt="" /> 
+                                <br />                                     
+                            </div>
+                        </div><!--end card-body-->
+                    </div><!--end card-->
+                </div><!--end col-->  
+            {% endif %}
+        </div><!-- container -->
+    </div>
+    <span id="back-btn" class="btn  waves-effect waves-light"><img src="{% static 'dashboard/images/close.svg' %}" alt="image"></span>
+        <div class="filter-box">
+                <form method="get" action="{% url 'staffs:activities' pk=pk %}">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between">
+                            <h4>Filter <small></small></h4>
+                        </div>
+                        
+                        <div class="card-body card-padding add_item_container sale_item_formset">
+                            <div>
+                                <h6 class="mt-3 ms-2 text-primary">Between Dates</h6>
+                                <div class="form-group fg-line">
+                                    <label>From Date</label>
+                                    <input type="date" name="from_date" class="form-control" value="{{from_date}}" placeholder="From Date" />
+                                </div>
+    
+                                <div class="form-group fg-line">
+                                    <label>To Date</label>
+                                    <input type="date" name="to_date" class="form-control" value="{{to_date}}" placeholder="To Date" />
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h6 class="mt-3 ms-2 text-primary">Specific Date</h6>
+                                <div class="form-group fg-line">
+                                    <label> Date</label>
+                                    <input type="date" name="date" class="form-control" value="{{on_date}}" placeholder="Specific Date" />
+                                </div>
+                            </div>
+                            
+                            <div class="m-t-20">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </form>
+        </div>
+    <!-- end page content -->
+{% endblock content %}
+{% block static %}
+<style>
+    .col-4{
+        width: 31%;
+    }
+    .item{
+        padding: 5px 10px;
+    }
+
+ 
+    #back-btn{
+        display: none;
+        /* position: absolute; */
+        position: fixed;
+        top: 100px;
+        right:26%;
+        background:#fff;
+        border-radius: 50%;
+        padding: 10px;
+        width: 34px;
+        z-index: 21;
+    }
+    #back-btn img{
+        width: 100%;
+        display: block;
+    }
+    
+    .filter-box{
+        display: none;
+        z-index: 21;
+        overflow-y: scroll;
+        /* position: absolute; */
+        position: fixed;
+        right:0;
+        bottom:0;
+        height:calc(100vh - 70px);
+        width:25%;
+        background:#fff;
+        display: none;
+        z-index: 20;
+        overflow-y: scroll;
+        padding: 10px 15px;
+    }
+    
+    .filter-box .card{
+        z-index:2;
+        box-shadow: 0;
+        -webkit-box-shadow: none;
+    }
+    .filter-box .card-header {
+        position: relative;
+        padding: 25px 14px;
+        align-items: center;
+        border-bottom: 0;
+        background:#fff;
+    }
+    .filter-box .card-header h4{
+        font-weight: 600;
+        font-size: 25px;
+        margin-bottom: 0;
+    }
+    .filter-box .card-body {
+        padding: 23px 20px 19px;
+        background: rgba(244, 234, 255, 0.5);
+        border-radius: 8px;
+    }
+    .filter-box .card-body .form-group{
+        background: #fff;
+        border-radius: 8px;
+        padding: 15px;
+    }
+    .filter-box .card-body label{
+        font-weight: 600;
+    }
+    .filter-box .card-body input[type=date], input[type=datetime-local], input[type=month], input[type=time]{
+        padding: 10px;
+        /* font-weight: 600; */
+        color:#a1a1a1;
+        border-radius: 8px;
+        border: 1px solid #a1a1a1;
+    }
+    
+    @media all and (max-width: 1300px) {
+        .filter-box{
+           width: 30%;
+        }
+        #back-btn{
+            right: 31%;
+        }
+    }
+    @media all and (max-width: 900px) {
+        .filter-box{
+           width: 45%;
+        }
+        #back-btn{
+            right: 46%;
+        }
+    }
+    @media all and (max-width: 768px) {
+        .filter-box{
+           width: 50%;
+        }
+        #back-btn{
+            right: 51%;
+        }
+    }
+    @media all and (max-width: 640px) {
+        .filter-box{
+           width: 57%;
+        }
+        #back-btn{
+            right: 58%;
+        }
+    }
+    @media all and (max-width: 540px) {
+        .filter-box{
+           width: 70%;
+        }
+        #back-btn{
+            right: 72%;
+        }
+    }
+</style>
+<script>
+    $('.filter_button').click(function(e){
+		e.preventDefault();
+        $('#back-btn').css('display' , 'block')
+		$('body').append('<span class="popup-bg"></span>');
+		$filter_box = $('.filter-box');
+		animation = "bounceInRight";
+		$filter_box.removeClass('animated').removeClass('bounceOutRight');
+		$filter_box.show().addClass('animated '+animation);
+	});
+	
+	$(document).on('click','#back-btn',function(){
+		$('.popup-bg').remove();
+        $('#back-btn').css('display' , 'none')
+        $('.filter-box').css("display", "none")
+		$filter_box = $('.filter-box');
+		$new_product_popup = $('.new_product_popup');
+		animation = "bounceOutRight";
+		$filter_box.removeClass('bounceInRight').removeClass('animation');
+		$filter_box.addClass('animated '+animation);
+	});
+</script>
+{% endblock %}
+
+        

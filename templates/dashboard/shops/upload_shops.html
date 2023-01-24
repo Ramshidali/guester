@@ -1,0 +1,115 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <!-- Page Content-->
+    <div class="page-content">
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="row">
+                            <div class="col">
+                                <h4 class="page-title">{{page_title}}</h4>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url 'app' %}">Dashboard</a></li>
+                                    <li class="breadcrumb-item"><a href="{% url 'shops:shops' %}">{{app_name}}</a></li>
+                                    <li class="breadcrumb-item active">{{page_title}}</li>
+                                </ol>
+                            </div><!--end col-->
+                        </div><!--end row-->                                                              
+                    </div><!--end page-title-box-->
+                </div><!--end col-->
+            </div><!--end row-->
+            <!-- end page title end breadcrumb -->
+            
+            <div class="row">
+                <div class="card-body">
+                    <form class="ajax reset redirect" method="post"  enctype="multipart/form-data" action="{{url}}">
+                    {% csrf_token %}
+                        <div class="card-body card-padding">
+                            <div class="row">
+                                <div class="col-sm-6">
+            
+                                    <div class="form-group fg-line">
+                                        <label for="{{ form.file.id_for_label }}">
+                                            {{ form.file.label }}
+                                            {% if form.file.field.required %}
+                                                <small class="star text-danger">*</small>
+                                            {% endif %}
+            
+                                            {% if form.file.help_text %}
+                                                <span data-original-title="Field Info" title="" data-content="{{ form.file.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+                                            {% endif %}
+                                        </label>
+                                        {{ form.file }}
+            
+                                        {% if form.file.errors %}
+                                            <label class="error">{{ form.file.errors.as_text }}</label>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                            <div class="m-t-20">
+                            <button type="submit" class="btn btn-success waves-effect excel-upload">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div> 
+                <!-- end row -->
+        </div><!-- container -->
+    </div>
+
+
+    
+    {{form.media}}
+    <!-- end page content -->
+{% endblock content %}
+{% block static %}
+<script>
+    $(".excel-upload").click(function (e) {
+        var _validFileExtensions = [".xls", ".xlsx"];   
+
+        function FileValidate() {
+            var oInput = document.getElementById("input-file-now");
+
+            if (oInput.type == "file") {
+                var sFileName = oInput.value;
+                if (sFileName.length > 0) {
+                    var blnValid = false;
+                    for (var j = 0; j < _validFileExtensions.length; j++) {
+                        var sCurExtension = _validFileExtensions[j];
+                        if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+                            blnValid = true;
+                            break;
+                        }
+                    }
+                    
+                    if (!blnValid) {
+                        if (sFileName) {
+                            var startIndex = (sFileName.indexOf('\\') >= 0 ? sFileName.lastIndexOf('\\') : sFileName.lastIndexOf('/'));
+                            var filename = sFileName.substring(startIndex);
+                            if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+                                filename = filename.substring(1);
+                            }
+                        }   
+                        alertify.alert("! Invalid File Extension \n" + filename + ",\n Allowed extensions are: " + _validFileExtensions.join(", "), function(){
+                        });
+                        //alert("! Invalid File \n" + filename + " is invalid\nAllowed extensions are: " + _validFileExtensions.join(", "));
+                        e.preventDefault();
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        FileValidate();
+    });
+</script>
+{% endblock %}

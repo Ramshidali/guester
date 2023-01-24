@@ -1,0 +1,138 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <!-- Page Content-->
+    <div class="page-content">
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="row">
+                            <div class="col">
+                                <h4 class="page-title">{{page_title}}</h4>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url 'app' %}">Dashboard</a></li>
+                                    <li class="breadcrumb-item active">{{app_name}}</li>
+                                    <li class="breadcrumb-item active">{{page_title}}</li>
+                                </ol>
+                            </div><!--end col-->
+                        </div><!--end row-->                                                              
+                    </div><!--end page-title-box-->
+                </div><!--end col-->
+            </div><!--end row-->
+            <!-- end page title end breadcrumb -->
+            
+            <div class="row">
+                <div class="card-body">
+                    <form class="ajax reset redirect" method="post"  enctype="multipart/form-data" action="{{url}}">
+                    {% csrf_token %}
+                        <div class="card-body card-padding">
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    {% if is_edit %}
+                                        {% if instance.image %}
+                                            <div class="lgi-heading">Existing Image</div>
+                                            <div class="main-Image" >
+                                                <img src="{{ instance.image.url }}" alt="Image" style="width:50px; ">
+                                            </div>
+                                            <br />
+                                        {% endif %}
+                                    {% endif %}
+            
+                                    <div class="form-group fg-line">
+                                        <label for="{{ form.image.id_for_label }}">
+                                            {{ form.image.label }}
+                                            {% if form.image.field.required %}
+                                                <small class="star text-danger">*</small>
+                                            {% endif %}
+            
+                                            {% if form.image.help_text %}
+                                                <span data-original-title="Field Info" title="" data-content="{{ form.image.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+                                            {% endif %}
+                                        </label>
+                                        {{ form.image }}
+            
+                                        {% if form.image.errors %}
+                                            <label class="error">{{ form.image.errors.as_text }}</label>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="preview">
+                                        <img id="file-ip-1-preview">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="m-t-20">
+                            <button type="submit" class="btn btn-success waves-effect">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div> 
+                <!-- end row -->
+        </div><!-- container -->
+    </div>
+
+
+    
+    {{form.media}}
+    <!-- end page content -->
+{% endblock content %}
+{% block static %}
+    {% load static %}
+    {{form.media}}
+    <style>
+        .select2-container--default{
+            width: 100%;
+        }
+        .select2-container .select2-selection--single {
+            height: calc(2.5em + .1rem + 1px);
+        }
+        .select2-container--default .select2-selection--single {
+            border: 1px solid #e3ebf6;
+        }
+        .select2-container--default .select2-results__option--highlighted[aria-selected] {
+            color: #4d65d9;
+        }
+
+        .dynamic-formset-add td{
+            text-align: center !important;
+        }
+        input[type=number]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: 26px;
+            position: absolute;
+            top: 8px;
+            right: 14px;
+            width: 20px; 
+        }.select2-container--default .select2-selection--single {
+            border-radius: 1.25rem;
+            line-height:1.75;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+        }
+        .preview img{
+            width: 200px;
+        }
+        </style>
+        <script>
+            $("#id_image").change(function(event){
+                    if(event.target.files.length > 0){
+                      var src = URL.createObjectURL(event.target.files[0]);
+                      var preview = document.getElementById("file-ip-1-preview");
+                      preview.src = src;
+                      preview.style.display = "block";
+                    }
+                  
+                //alert("The text has been changed.");
+              }); 
+        </script>
+
+{% endblock  %}

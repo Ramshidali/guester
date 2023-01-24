@@ -1,0 +1,205 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <!-- Page Content-->
+    <div class="page-content">
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="row">
+                            <div class="col">
+                                <h4 class="page-title">{{page_title}}</h4>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url 'app' %}">Dashboard</a></li>
+                                    <li class="breadcrumb-item active">{{app_name}}</li>
+                                    <li class="breadcrumb-item active">{{page_title}}</li>
+                                </ol>
+                            </div><!--end col-->
+                        </div><!--end row-->                                                              
+                    </div><!--end page-title-box-->
+                </div><!--end col-->
+            </div><!--end row-->
+            <!-- end page title end breadcrumb -->
+            
+            <div class="row">
+                <div class="card-body">
+                    <form class="ajax reset redirect" method="post"  enctype="multipart/form-data" action="{{url}}">
+                    {% csrf_token %}
+                        <div class="card-body card-padding">
+                            <div class="row">
+                                <div class="col-sm-6">
+            
+                                    <div class="form-group fg-line">
+                                        <label for="{{ form.dish.id_for_label }}">
+                                            {{ form.dish.label }}
+                                            {% if form.dish.field.required %}
+                                                <small class="star text-danger">*</small>
+                                            {% endif %}
+            
+                                            {% if form.dish.help_text %}
+                                                <span data-original-title="Field Info" title="" data-content="{{ form.dish.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+                                            {% endif %}
+                                        </label>
+                                        {{ form.dish }} 
+                                        <a href="#" class="text-primary" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg">Add Dish +</a>
+            
+                                        {% if form.dish.errors %}
+                                            <label class="error">{{ form.dish.errors.as_text }}</label>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+            
+                                    <div class="form-group fg-line">
+                                        <label for="{{ form.description.id_for_label }}">
+                                            {{ form.description.label }}
+                                            {% if form.description.field.required %}
+                                                <small class="star text-danger">*</small>
+                                            {% endif %}
+            
+                                            {% if form.description.help_text %}
+                                                <span data-original-title="Field Info" title="" data-content="{{ form.description.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+                                            {% endif %}
+                                        </label>
+                                        {{ form.description }} 
+            
+                                        {% if form.description.errors %}
+                                            <label class="error">{{ form.description.errors.as_text }}</label>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+            
+                                    <div class="form-group fg-line">
+                                        <label for="{{ form.price.id_for_label }}">
+                                            {{ form.price.label }}
+                                            {% if form.price.field.required %}
+                                                <small class="star text-danger">*</small>
+                                            {% endif %}
+            
+                                            {% if form.price.help_text %}
+                                                <span data-original-title="Field Info" title="" data-content="{{ form.price.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+                                            {% endif %}
+                                        </label>
+                                        {{ form.price }}
+            
+                                        {% if form.price.errors %}
+                                            <label class="error">{{ form.price.errors.as_text }}</label>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    {% if is_edit %}
+                                        {% if instance.featured_image %}
+                                            <div class="lgi-heading">Existing Image</div>
+                                            <div class="main-Image" >
+                                                <img src="{{ instance.featured_image.url }}" alt="Image" style="width:50px; ">
+                                            </div>
+                                            <br />
+                                        {% endif %}
+                                    {% endif %}
+            
+                                    <div class="form-group fg-line">
+                                        <label for="{{ form.featured_image.id_for_label }}">
+                                            {{ form.featured_image.label }}
+                                            {% if form.featured_image.field.required %}
+                                                <small class="star text-danger">*</small>
+                                            {% endif %}
+            
+                                            {% if form.featured_image.help_text %}
+                                                <span data-original-title="Field Info" title="" data-content="{{ form.featured_image.help_text }}" data-placement="left" data-toggle="popover" data-trigger="hover" class="help-text-icon zmdi zmdi-info-outline">
+                                            {% endif %}
+                                        </label>
+                                        {{ form.featured_image }}
+            
+                                        {% if form.featured_image.errors %}
+                                            <label class="error">{{ form.featured_image.errors.as_text }}</label>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="preview">
+                                        <img id="file-ip-1-preview">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="m-t-20">
+                            <button type="submit" class="btn btn-success waves-effect">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div> 
+                <!-- end row -->
+        </div><!-- container -->
+    </div>
+
+{% include 'dashboard/includes/dish_form.html'%}
+    
+    
+    <!-- end page content -->
+{% endblock content %}
+{% block static %}
+    {% load static %}
+    
+    {{form.media}}
+    <style>
+        .select2-container--default{
+            width: 100%;
+        }
+        .select2-container .select2-selection--single {
+            height: calc(2.5em + .1rem + 1px);
+        }
+        .select2-container--default .select2-selection--single {
+            border: 1px solid #e3ebf6;
+        }
+        .select2-container--default .select2-results__option--highlighted[aria-selected] {
+            color: #4d65d9;
+        }
+
+        .dynamic-formset-add td{
+            text-align: center !important;
+        }
+        input[type=number]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: 26px;
+            position: absolute;
+            top: 8px;
+            right: 14px;
+            width: 20px; 
+        }.select2-container--default .select2-selection--single {
+            border-radius: 1.25rem;
+            line-height:1.75;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+        }
+        .preview img{
+            width: 200px;
+        }
+        </style>
+        <script>
+            $("#id_featured_image").change(function(event){
+                    if(event.target.files.length > 0){
+                      var src = URL.createObjectURL(event.target.files[0]);
+                      var preview = document.getElementById("file-ip-1-preview");
+                      preview.src = src;
+                      preview.style.display = "block";
+                    }
+                  
+                //alert("The text has been changed.");
+              }); 
+        </script>
+{% endblock  %}

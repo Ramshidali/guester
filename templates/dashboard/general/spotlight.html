@@ -1,0 +1,79 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block content %}
+    <!-- Page Content-->
+    <div class="page-content">
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="row">
+                            <div class="col">
+                                <h4 class="page-title">{{page_title}} </h4>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url 'app' %}">Dashboard</a></li>
+                                    <li class="breadcrumb-item"><a href="{% url 'general:spotlights' %}">Spotlight</a></li>
+                                    <li class="breadcrumb-item active">{{page_title}} : <span class="text-dark font-weight-bold"> {{instance.title}}</span></li>
+                                </ol>
+                            </div><!--end col-->
+                            <div class="col-auto align-self-center">
+                                <a class="btn btn-outline-success btn-icon-text"   href="{% url 'general:spotlight_create' %}" > New <i class="las la-plus"></i></a>
+                                <a class="btn btn-outline-success btn-icon-text"   href="{% url 'general:spotlight_edit' pk=instance.pk %}" >Edit <i class="las la-pen btn-icon-append"></i></a>
+                                <a class="action-button remove redirect btn btn-outline-danger btn-icon-text"
+                                data-id="{{instance.pk}}" data-text="{{confirm_delete_message}}" data-title="Are you sure?" href="{% url 'general:spotlight_delete' pk=instance.pk %}">Delete <i class="las la-trash btn-icon-append"></i></a>
+                            </div><!--end col-->  
+                        </div><!--end row-->                                                              
+                    </div><!--end page-title-box-->
+                </div><!--end col-->
+            </div><!--end row-->
+            <div class="row">
+                <div class="card-body">
+                    <h5 class="text-primary mb-2">Basic Details</h5>
+                    <div class="card-body card card-padding">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <img class="rounded  me-3 mb-3 " width=1000 src="{{instance.image.url}}" alt="profile">
+                            </div>            
+                        </div>
+                    </div>
+                </div> 
+            </div>
+            <div class="row">
+                <div class="card-body">
+                    <h5 class="text-primary mb-2"> Created & updated</h5>
+                    <div class="card-body card card-padding">
+                        <div class="row">
+                            <div class="col-sm-3">    
+                                <h6 class="text-dark ">Date Added : </h6>
+                                <p class="item-text">{{instance.date_added}}</p>
+                            </div>
+                            <div class="col-sm-3"> 
+                                <h6 class="text-dark ">Date Updated : </h6>
+                                <p class="item-text">{{instance.date_updated}}</p>
+                            </div>
+                            <div class="col-sm-3"> 
+                                <h6 class="text-dark ">Created User : </h6>
+                                <p class="item-text">{{instance.creator.username}}</p>
+                            </div>
+                            <div class="col-sm-3"> 
+                                <h6 class="text-dark ">Last Updated User : </h6>
+                                <p class="item-text">{{instance.updater.username}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+
+        </div><!-- container -->
+    </div>
+    <!-- end page content -->
+{% endblock content %}
+{% block static %}
+<style>
+    
+    
+</style>
+{% endblock %}
+        

@@ -1,0 +1,436 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <!-- Page Content-->
+    <div class="page-content">
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <h3 class="dash-title mb-3">Dashboard</h3>
+                <div class="col-lg-12">
+                    <div class="row justify-content-start">
+                        <div class="col-md-6 col-lg-3">
+                            <div class="card  dash-card"  data-iq-gsap="onStart"  data-iq-opacity="0" data-iq-position-y="-40" data-iq-duration=".6"
+                                data-iq-delay=".8"  data-iq-trigger="scroll" data-iq-ease="none" >
+                                <div class="top">
+                                    <div class="left-card">
+                                        <img src="{% static 'dashboard/images/dash_icon01.svg' %}" alt="">
+                                    </div>
+                                    <div class="right-card">
+                                        <a href="{% url 'customers:customers' %}" class="text-dark d-flex">
+                                            <img src="{% static 'dashboard/images/arrow.svg' %}" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="bottom">
+                                    <div class="left">
+                                        <h6>Total Users</h6>
+                                        <h5>{{total_users}}</h5>
+                                    </div>
+                                    <div class="middle">
+                                        <img src="{% static 'dashboard/images/line.svg' %}" alt="">
+                                    </div>
+                                    <div class="right">
+                                        <h6>New Users</h6>
+                                        <h5>{{users_today}}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!--end col--> 
+                        <div class="col-md-6 col-lg-3">
+                            <div class="card  dash-card"  data-iq-gsap="onStart"  data-iq-opacity="0" data-iq-position-y="-40" data-iq-duration=".6"
+                                data-iq-delay=".8"  data-iq-trigger="scroll" data-iq-ease="none" >
+                                <div class="top">
+                                    <div class="left-card">
+                                        <img src="{% static 'dashboard/images/dash_icon02.svg' %}" alt="">
+                                    </div>
+                                    <div class="right-card">
+                                        <a href="{% url 'shops:shops' %}" class="text-dark d-flex">
+                                            <img src="{% static 'dashboard/images/arrow.svg' %}" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="bottom">
+                                    <div class="left">
+                                        <h6>Total Shops</h6>
+                                        <h5>{{total_shops}}</h5>
+                                    </div>
+                                    <div class="middle">
+                                        <img src="{% static 'dashboard/images/line.svg' %}" alt="">
+                                    </div>
+                                    <div class="right">
+                                        <h6>New Shops</h6>
+                                        <h5>{{shops_today}}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!--end col--> 
+                        <div class="col-md-6 col-lg-3">
+                            <div class="card  dash-card"  data-iq-gsap="onStart"  data-iq-opacity="0" data-iq-position-y="-40" data-iq-duration=".6"
+                                data-iq-delay=".8"  data-iq-trigger="scroll" data-iq-ease="none" >
+                                <div class="top">
+                                    <div class="left-card">
+                                        <img src="{% static 'dashboard/images/dash_icon03.svg' %}" alt="">
+                                    </div>
+                                    <div class="right-card">
+                                        <a href="{% url 'dishes:dishes' %}" class="text-dark d-flex">
+                                            <img src="{% static 'dashboard/images/arrow.svg' %}" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="bottom">
+                                    <div class="left">
+                                        <h6>Total Dishes</h6>
+                                        <h5>{{total_dishes}}</h5>
+                                    </div>
+                                    <div class="middle">
+                                        <img src="{% static 'dashboard/images/line.svg' %}" alt="">
+                                    </div>
+                                    <div class="right">
+                                        <h6>New Dishes</h6>
+                                        <h5>{{dishes_today}}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!--end col--> 
+                        <div class="col-md-6 col-lg-3">
+                            <div class="card  dash-card"  data-iq-gsap="onStart"  data-iq-opacity="0" data-iq-position-y="-40" data-iq-duration=".6"
+                                data-iq-delay=".8"  data-iq-trigger="scroll" data-iq-ease="none" >
+                                <div class="top">
+                                    <div class="left-card">
+                                        <img src="{% static 'dashboard/images/dash_icon04.svg' %}" alt="">
+                                    </div>
+                                    <div class="right-card">
+                                        <a href="{% url 'staffs:staffs' %}" class="text-dark d-flex">
+                                            <img src="{% static 'dashboard/images/arrow.svg' %}" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="bottom">
+                                    <div class="left">
+                                        <h6>Total Staffs</h6>
+                                        <h5>{{total_staffs}}</h5>
+                                    </div>
+                                    <div class="middle">
+                                        <img src="{% static 'dashboard/images/line.svg' %}" alt="">
+                                    </div>
+                                    <div class="right">
+                                        <h6>New Staffs</h6>
+                                        <h5>{{staffs_today}}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!--end col--> 
+                    </div><!--end row-->
+                </div><!--end col-->
+            </div><!--end row-->
+            {% if dishes %}
+            <div class="row" style="margin-bottom: 100px;">
+                <div class="dish-box">
+                    <div class="top-card">
+                        <h4>New Dishes</h4>
+                        <a href="{% url 'dishes:dishes' %}">View all <img src="{% static 'dashboard/images/arrow_2.svg' %}" alt=""></a>
+                    </div>
+                    <div class="bottom-card">
+                        {% for instance in dishes|slice:":8" %}
+                        <a href="{% url 'dishes:dish' pk=instance.pk %}" class="item-box" data-iq-gsap="onStart"
+                        data-iq-opacity="0"
+                        data-iq-position-y="-40"
+                        data-iq-duration=".6"
+                        data-iq-delay=".6"
+                        data-iq-trigger="scroll"
+                        data-iq-ease="none">
+                            <div class="top-box">
+                                {% if instance.image %}
+                                <img src="{{instance.image.url}}" alt="">
+                                {% endif %}
+                            </div>
+                            <div class="bottom-box">
+                                {% if instance.dietary_type == 'Veg'%}
+                                    <img src="{% static 'dashboard/images/veg.svg' %}" alt="">
+                                {% else %}
+                                    <img src="{% static 'dashboard/images/non-veg.svg' %}" alt="">
+                                {% endif%}
+                                <h4>{{instance.name}}</h4>
+                                <h6>{{instance.dish_category}}</h6>
+                            </div>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            <div class="row">
+                <div class="col-lg-8 col-sm-12">
+                    <div class="card overflow-hidden" data-aos="fade-up" data-aos-delay="600"  data-iq-gsap="onStart"
+                    data-iq-opacity="0"
+                    data-iq-position-y="-40"
+                    data-iq-duration=".6"
+                    data-iq-delay="1"
+                    data-iq-trigger="scroll"
+                    data-iq-ease="none">
+                        <div class="card-header border-0 pb-0">
+                            <div class="header-title">
+                                <h4 class="card-title">Latest Users</h4>         
+                            </div>
+                        </div>
+                        <div class="card-body py-0">
+                            <div class="table-responsive">
+                                <table id="basic-table" class="table mb-0 iq-table user-list-table" role="grid">
+                                    <thead >
+                                        <tr>
+                                            <th>Customer</th>
+                                            <th>Location</th>
+                                            <th>Contacts</th>
+                                            <th class="action">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for instance in users|slice:":5" %}
+                                        <tr >
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                {% if instance.photo %}
+                                                <img class="bg-soft-primary rounded img-fluid avatar-40 me-3" src="{{instance.photo.url}}" alt="profile">
+                                                {% else %}
+                                                <img src="{% static 'dashboard/images/User-profile/avatar.png' %}" alt="header" class="bg-soft-primary rounded img-fluid avatar-40 me-3">
+                                                {% endif %}
+                                                <p class="mb-0">{{instance.name}}</p>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                {{instance.location}}
+                                            </td>
+                                            <td>{{instance.phone}}</td>
+                                            <td>
+                                                <div class="d-flex align-items-center  justify-content-center">                                                       
+                                                    <a href="{% url 'customers:customer' pk=instance.pk %}" class="mr-2 btn btn-sm btn-icon btn-success"><i class="las la-eye"></i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="card overflow-hidden" data-aos="fade-up" data-aos-delay="600"  data-iq-gsap="onStart"
+                    data-iq-opacity="0"
+                    data-iq-position-y="-40"
+                    data-iq-duration=".6"
+                    data-iq-delay="1"
+                    data-iq-trigger="scroll"
+                    data-iq-ease="none">
+
+                        <div class="card-header border-0 mb-3 pb-0">
+                            <div class="header-title">
+                                <h4 class="card-title">Latest Reviews</h4>         
+                            </div>
+                        </div>
+                        <div class="card-body py-0">
+                            {% for instance in shop_reviews %}
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-12 d-flex justify-content-between align-items-center">
+                                            <div class="left">
+                                                {% if instance.customer.photo %}
+                                                <img src="{{instance.customer.photo.url}}" alt="header" class="img-fluid rounded-circle avatar-100 mb-2">
+                                                {% else %}
+                                                <img src="{% static 'dashboard/images/User-profile/avatar.png' %}" alt="header" class="img-fluid rounded-circle avatar-100 mb-2">
+                                                {% endif %}                                                        
+                                                <small class="heading-title fw-bolder text-dark ms-3 ms-lg-0">{{instance.customer.name}}</small><br>
+                                                <small class="heading-title fw-bolder text-secondary ms-3 ms-lg-0">
+                                                    Shop :  <span class="text-success"> {{instance.shop}}</span></small>
+                                            </div>
+                                            <div class="right">
+                                                <small class="text-primary">{{instance.date_added|date}}</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <p>{{instance.review}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>            
+    </div>
+    <!-- end page content -->
+{% endblock content %}
+{% block static %}
+<style>
+    .dash-title{
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 32px;
+        line-height: 28px;
+    }
+    .dash-card{
+        border:1.5px solid #E6E1E6;
+        border-radius: 16px;
+        padding: 15px;
+        background: #FFFBFF;
+    }
+    .dash-card:hover{
+        box-shadow: 0px 9px 25px rgba(0, 0, 0, 0.09);
+    }
+    .dash-card .top{
+        display: flex;
+        justify-content: space-between;
+    }
+    .dash-card .top .left-card{
+        width:30%;
+        padding: 10px 5px;
+    }
+    .dash-card .top .left-card img{
+        width: 68px;
+    }
+    .dash-card .top .right-card{
+        padding: 10px 5px;
+    }
+    .dash-card .top .right-card img{
+        padding-top: 10px
+    }
+    .dash-card .bottom{
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 15px;
+    }
+    .dash-card .bottom h6{
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 0.15px;
+        color: #7A757F;
+
+    }
+    .dash-card .bottom h5{
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 32px;
+        line-height: 44px;
+        color: #1C1B1E;
+
+    }
+
+    .dish-box{
+        margin-bottom: 50px;
+    }
+    .dish-box .top-card{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    .dish-box .top-card h4{
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 28px;
+    }
+    .dish-box .bottom-card {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    .dish-box .bottom-card .item-box{
+        position: relative;
+        margin-right: 20px;
+    }
+    
+    .dish-box .bottom-card .top-box{
+        width: 245.25px;
+        height: 185px;
+        background:#FFFFFF;
+        border-radius:16px 16px 0 0;
+        border: 1px solid #fcf8ee;
+        
+    }
+    .dish-box .bottom-card .top-box img{
+        display: block;
+        width: 100%;
+        height:100%;
+        border-radius:16px;
+        object-fit: cover;
+    }
+    .dish-box .bottom-card .bottom-box{
+        background: #FFFFFF;
+        border: 1px solid #F3F4F5;
+        border-top:0;
+        border-radius: 0px 0px 16px 16px ;
+        width: 245.25px;
+        height: 100px;
+        padding: 15px;
+        position: absolute;
+        top:183px;
+    }
+    .dish-box .bottom-card .bottom-box img{
+        margin-bottom: 8px;
+    }
+    .dish-box .bottom-card .bottom-box h4{
+        font-family: 'DM Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 19px;
+        letter-spacing: 0.1px;
+        color: #222222;
+
+    }
+    .dish-box .bottom-card .bottom-box h6{
+        font-family: 'DM Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 0.5px;
+        color: #A0A0A0;
+    }
+    @media screen and (max-width: 2000px) {
+        .dish-box .bottom-card .item-box{
+          margin-bottom: 120px;
+        }
+    }
+    @media screen and (max-width: 1400px) {
+        .dish-box .bottom-card .item-box{
+            margin-right: 1%;
+            width: 24%;
+        }
+        .dish-box .bottom-card .top-box {
+            width: 100%;
+        }
+        .dish-box .bottom-card .bottom-box {
+            width: 100%;
+        }
+    }
+    @media screen and (max-width: 980px) {
+        .dish-box .bottom-card .item-box{
+            width: 32%;
+        }
+    }
+    @media screen and (max-width: 640px) {
+        .dish-box .bottom-card .item-box{
+            width: 49%;
+        }
+    }
+    @media screen and (max-width: 460px) {
+        .dish-box .bottom-card .item-box{
+            width: 100%;
+            margin-right: 0;
+        }
+    }
+</style>
+{% endblock %}

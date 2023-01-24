@@ -1,0 +1,147 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <!-- Page Content-->
+    <div class="page-content">
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="row">
+                            <div class="col">
+                                <h4 class="page-title">{{page_title}}</h4>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url 'app' %}">Dashboard</a></li>
+                                    <li class="breadcrumb-item active">
+                                        <a href="{% url 'general:badges' %}">{{page_title}}</a></li>
+                                    </li>
+                                </ol>
+                            </div><!--end col-->
+                            <div class="col-auto col-sm-2 float-right ml-auto align-self-center">
+                                <form method="get" action="{% url 'general:badges' %}">
+                                    <li class="list-inline-item">
+                                        <div class="input-group">
+                
+                                            <input name="q" type="text" placeholder="Search" value="{{ filter_data.q }}"
+                                                class="form-control" />
+                                            <span class="input-group-append">
+                                                <button type="submit" class="btn btn-soft-success btn-sm">
+                                                    <svg width="18" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <circle cx="11.7669" cy="11.7666" r="8.98856" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></circle>
+                                                        <path d="M18.0186 18.4851L21.5426 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                    </svg>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </li>
+                                </form>
+                            </div>
+                            <div class="col-auto align-self-center">
+                                <a class="btn btn-outline-success btn-icon-text"  href="{% url 'general:badge_create' %}" >+ Create <i class="ti-plus btn-icon-append"></i></a>
+                            </div><!--end col--> 
+                        </div><!--end row-->                                                              
+                    </div><!--end page-title-box-->
+                </div><!--end col-->
+            </div><!--end row-->
+            <!-- end page title end breadcrumb -->
+            {% if instances %}
+            <div class="row">
+                <div class="card-body table-responsive">
+                    <div class="">
+                        <table id="datatable" class="table table-striped" >
+                            <thead>
+                            <tr>
+                                <th>SL No</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th class="action">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% load el_pagination_tags %}
+                            {% paginate 10 instances %}
+                            {% for instance in instances %}
+                            <tr>
+                                <td>{{forloop.counter}}</td>
+                                {% if instance.icon %}
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <img class="rounded img-fluid avatar-40 me-3 " src="{{instance.icon.url}}" alt="profile">
+                                            <h6>{{instance.title}}</h6>
+                                        </div>
+                                    </td>
+                                {% else %}
+                                    <td> <h6>{{instance.title}}</h6></td>
+                                {% endif %}
+                                <td>{{instance.description|safe|truncatewords:10}}</td>
+                                
+                                <td>
+                                    <div class="d-flex align-items-center  justify-content-center">                                                       
+                                        <a href="{% url 'general:badge' pk=instance.pk %}" class="mr-2 btn btn-sm btn-icon btn-success"><i class="las la-eye"></i></a>
+                                        <a href="{% url 'general:badge_edit' pk=instance.pk %}" class="mr-2 btn btn-sm btn-icon btn-success"><i class="las la-pencil-alt"></i></a>
+                                        <a class="action-button remove redirect  btn btn-sm btn-icon btn-success"
+                                            data-id="{{instance.pk}}" data-text="{{confirm_delete_message}}" data-title="Are you sure?" href="{% url 'general:badge_delete' pk=instance.pk %}"><i class="las la-trash-alt"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+
+                            </tbody>
+                        </table> 
+                        
+                        {% if instances %}
+                        {% get_pages %}
+                            <div class="row">
+                                <div class="col-lg-12 bottom-content" id="content-pagination">
+                                    <div class="left">
+                                        <h6>Showing {{title}}
+                                        <span class="current_page_index">{{ pages.current_start_index }}</span> - <span
+                                        class="current_end_status">{{ pages.current_end_index }}</span> of <span
+                                        class="total_count">{{ pages.total_count }}</span>
+                                        </h6>
+                                    </div>
+                                    <div class="right">
+                                        <div class="col-sm-12 col-xs-12 my-pagination">{% show_pages %}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                        
+                    </div>
+                    
+                </div>
+                 <!-- end col  -->
+            </div> 
+
+            {% else %}
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">  
+                            <div class="text-center">
+                                <img class="mb-3 rounded-circle" width="500px;" src="{% static 'dashboard/images/nothing_found.jpg' %}" alt="" /> 
+                                <br />                                     
+                                <a  href="{% url 'general:badge_create' %}" class="btn btn-outline-success btn-icon-text">Create {{page.title}}</a>
+                            </div>
+                        </div><!--end card-body-->
+                    </div><!--end card-->
+                </div><!--end col-->  
+            {% endif %}
+        </div><!-- container -->
+    </div>
+    <!-- end page content -->
+{% endblock content %}
+{% block static %}
+<style>
+    .col-4{
+        width: 31%;
+    }
+    .item{
+        padding: 5px 10px;
+    }
+</style>
+{% endblock %}
+
+        
